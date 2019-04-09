@@ -1,0 +1,10 @@
+.idea/*
+**/.idea/*
+*.iml
+.gradle
+local.properties
+
+*~
+
+build
+src/jsMain/web
