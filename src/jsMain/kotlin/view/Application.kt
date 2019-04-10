@@ -115,7 +115,7 @@ class ApplicationComponent : RComponent<ApplicationProps, ApplicationState>() {
 
         if (post != null) {
             props.coroutineScope.launch {
-                val comments = commentsService.getComments(postId.toString(), post.comments.size, Random.nextInt(3))
+                val comments = commentsService.getComments(postId.toString(), Random.nextInt(4))
 
                 setState {
                     postWithComments = postWithComments.map {

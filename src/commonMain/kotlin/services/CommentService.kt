@@ -5,6 +5,7 @@ import kotlinx.serialization.list
 import model.Comment
 import network.CommentClient
 import kotlin.coroutines.CoroutineContext
+import kotlin.math.min
 
 class CommentsService(coroutineContext: CoroutineContext) {
     private val client = CommentClient(coroutineContext)
@@ -16,10 +17,13 @@ class CommentsService(coroutineContext: CoroutineContext) {
         )
     }
 
-    suspend fun getComments(postId: String, from: Int = 0, count: Int = 5): List<Comment> {
-        return Json.parse(
-            Comment.serializer().list,
-            client.getComments(postId)
-        ).subList(from, from + count)
+    suspend fun getComments(postId: String, count: Int = 5): List<Comment> {
+        return when (count) {
+            0 -> emptyList()
+            else -> Json.parse(
+                Comment.serializer().list,
+                client.getComments(postId, count)
+            ).take(count)
+        }
     }
 }

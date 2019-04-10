@@ -13,7 +13,7 @@ actual class PostWithCommentsService : RPCService {
     actual suspend fun getPostsWithComments(): List<PostWithComments> {
         return postService.getPosts().map { post ->
             GlobalScope.async {
-                val comments = commentsService.getComments(post.id.toString(), count = Random.nextInt(7))
+                val comments = commentsService.getComments(post.id.toString(), count = Random.nextInt(1, 3))
                 PostWithComments(post, comments)
             }
         }.map { it.await() }
