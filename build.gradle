@@ -89,6 +89,9 @@ kotlin {
 
 kotlinFrontend {
     npm {
+        dependency("core-js", "^2.0.0")
+        dependency("svg-inline-loader", "0.8.0")
+
         dependency("@jetbrains/kotlin-extensions", "1.0.1-pre.67")
         dependency("@jetbrains/kotlin-css", "1.0.0-pre.67")
         dependency("@jetbrains/kotlin-css-js", "1.0.0-pre.67")
@@ -97,6 +100,9 @@ kotlinFrontend {
         dependency("react-dom", "16.8.3")
         dependency("inline-style-prefixer", "5.0.4")
         dependency("styled-components", "3.4.10")
+
+        dependency("@jetbrains/logos", "1.1.4")
+        dependency("@jetbrains/ring-ui", "2.0.0-beta.11")
     }
 
     sourceMaps = false
