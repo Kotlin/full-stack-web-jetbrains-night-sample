@@ -111,6 +111,8 @@ kotlinFrontend {
         devDependency("karma-viewport", "1.0.4")
         devDependency("karma-webpack", "3.0.5")
         devDependency("webpack", "^4.0.0")
+        devDependency("enzyme", "3.9.0")
+        devDependency("enzyme-adapter-react-16", "1.12.1")
 
         dependency("core-js", "^2.0.0")
         dependency("svg-inline-loader", "0.8.0")
