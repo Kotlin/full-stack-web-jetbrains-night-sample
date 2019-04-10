@@ -8,3 +8,6 @@ local.properties
 
 build
 src/jsMain/web
+
+!.idea/runConfigurations
+!.idea/runConfigurations/*
