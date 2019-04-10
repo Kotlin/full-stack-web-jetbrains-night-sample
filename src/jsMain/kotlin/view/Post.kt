@@ -8,7 +8,7 @@ import kotlinx.css.BorderStyle
 import kotlinx.css.Color
 import kotlinx.css.properties.borderBottom
 import kotlinx.css.px
-import model.Post
+import model.PostWithComments
 import model.User
 import react.*
 import styled.StyleSheet
@@ -37,18 +37,34 @@ object PostStyles : StyleSheet("PostStyles", isStatic = true) {
 }
 
 interface PostProps: RProps {
-    var post: Post
+    var postWithComments: PostWithComments
     var user: User?
+    var onMoreComments: () -> Unit
 }
 
-class PostState: RState
+class PostState: RState {
+    var noMore: Boolean = false
+    var loading: Boolean = false
+}
 
 class PostView: RComponent<PostProps, PostState>() {
     private val post
-        get() = props.post
+        get() = props.postWithComments.post
+
+    private val comments
+        get() = props.postWithComments.comments
 
     init {
         state = PostState()
+    }
+
+    override fun componentDidUpdate(prevProps: PostProps, prevState: PostState, snapshot: Any) {
+        if (state.loading && prevProps != props) {
+            setState {
+                noMore = prevProps.postWithComments.comments.size == props.postWithComments.comments.size
+                loading = false
+            }
+        }
     }
 
     override fun RBuilder.render() {
@@ -71,19 +87,49 @@ class PostView: RComponent<PostProps, PostState>() {
 
                 styledDiv {
                     css {
-                        +PostStyles.noComments
+                        if (comments.isNotEmpty()) {
+                            +PostStyles.body
+                        }
+                        else {
+                            +PostStyles.noComments
+                        }
                     }
                     +post.body
+                }
+
+                comments.forEach {
+                    commentView(it) {
+                        css {
+                            +PostStyles.comment
+                        }
+                    }
+                }
+
+                if (!state.noMore) {
+                    ringButton {
+                        attrs {
+                            loader = state.loading
+                            onMouseDown = {
+                                setState {
+                                    loading = true
+                                }
+                                props.onMoreComments()
+                            }
+                        }
+
+                        +"Load more comments"
+                    }
                 }
             }
         }
     }
 }
 
-fun RBuilder.postView(post: Post, user: User? = null, handler: RHandler<PostProps> = {}) {
+fun RBuilder.postView(post: PostWithComments, user: User? = null, onMoreComments: () -> Unit, handler: RHandler<PostProps> = {}) {
     child(PostView::class) {
-        attrs.post = post
+        attrs.postWithComments = post
         attrs.user = user
+        attrs.onMoreComments = onMoreComments
         handler()
     }
 }
