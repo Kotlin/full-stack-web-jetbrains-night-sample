@@ -40,7 +40,7 @@ fun Application.main() {
                 }
                 body {
                     div {
-                        id = "js-response"
+                        id = "react-app"
                         +"Loading..."
                     }
                     script(src = "/main.bundle.js") {
