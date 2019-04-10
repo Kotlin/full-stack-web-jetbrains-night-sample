@@ -8,6 +8,7 @@ plugins {
     id 'kotlin-multiplatform' version '1.3.21'
     id 'kotlinx-serialization' version '1.3.21'
     id 'org.jetbrains.kotlin.frontend' version '0.0.45'
+    id 'com.github.node-gradle.node' version '1.3.0'
 }
 
 repositories {
@@ -18,7 +19,9 @@ repositories {
     mavenCentral()
 }
 
-def kotlin_version = '1.3.21'
+apply from: "common.gradle"
+
+ext.kotlin_version = '1.3.21'
 def ktor_version = '1.1.3'
 def logback_version = '1.2.3'
 
@@ -39,6 +42,10 @@ kotlin {
             tasks.getByName(compileKotlinTaskName).kotlinOptions {
                 main = "call"
             }
+        }
+
+        compilations.test {
+            applyKarma()
         }
     }
 
@@ -96,6 +103,15 @@ kotlin {
 
 kotlinFrontend {
     npm {
+        devDependency("mocha", "6.0.2")
+        devDependency("karma", "4.0.1")
+        devDependency("karma-mocha", "1.3.0")
+        devDependency("karma-chrome-launcher", "2.2.0")
+        devDependency("karma-sourcemap-loader", "0.3.7")
+        devDependency("karma-viewport", "1.0.4")
+        devDependency("karma-webpack", "3.0.5")
+        devDependency("webpack", "^4.0.0")
+
         dependency("core-js", "^2.0.0")
         dependency("svg-inline-loader", "0.8.0")
 
