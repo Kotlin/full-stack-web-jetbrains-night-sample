@@ -13,7 +13,7 @@ private class Application: CoroutineScope {
         document.getElementById("react-app")?.let {
             render(buildElement {
                 child(ApplicationComponent::class) {
-
+                    attrs.coroutineScope = this@Application
                 }
             }, it)
         }

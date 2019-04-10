@@ -2,10 +2,14 @@ import database.Posts
 import database.database
 import io.ktor.application.Application
 import io.ktor.application.call
+import io.ktor.application.install
+import io.ktor.features.ContentNegotiation
 import io.ktor.html.respondHtml
 import io.ktor.http.content.files
 import io.ktor.http.content.static
+import io.ktor.jackson.jackson
 import io.ktor.routing.get
+import io.ktor.routing.route
 import io.ktor.routing.routing
 import kotlinx.coroutines.launch
 import kotlinx.css.*
@@ -17,6 +21,8 @@ import model.Post
 import network.PostClient
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.batchInsert
+import rpc.rpc
+import services.PostService
 
 private val globalCss = CSSBuilder().apply {
     body {
@@ -31,6 +37,10 @@ private val globalCss = CSSBuilder().apply {
 }
 
 fun Application.main() {
+    install(ContentNegotiation) {
+        jackson {}
+    }
+
     database {
         SchemaUtils.create(Posts)
     }
@@ -78,6 +88,10 @@ fun Application.main() {
 
         static("/") {
             files("build/bundle")
+        }
+
+        route("/api") {
+            rpc(PostService::class, Post.serializer())
         }
     }
 }

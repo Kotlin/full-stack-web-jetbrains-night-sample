@@ -3,16 +3,17 @@ package view
 import contrib.ringui.header.ringHeader
 import contrib.ringui.header.ringLogo
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.css.padding
 import kotlinx.css.px
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import model.Post
+import react.*
+import services.PostService
 import styled.StyleSheet
 import styled.css
 import styled.styledA
 import styled.styledDiv
+import kotlin.random.Random
 
 private val jetbrainsLogo = kotlinext.js.require("@jetbrains/logos/jetbrains/jetbrains-simple.svg")
 
@@ -30,7 +31,9 @@ interface ApplicationProps: RProps {
     var coroutineScope: CoroutineScope
 }
 
-class ApplicationState: RState
+class ApplicationState: RState {
+    var posts: List<Post> = emptyList()
+}
 
 class ApplicationComponent: RComponent<ApplicationProps, ApplicationState>() {
     init {
@@ -39,6 +42,17 @@ class ApplicationComponent: RComponent<ApplicationProps, ApplicationState>() {
 
     private val coroutineContext
         get() = props.coroutineScope.coroutineContext
+
+    override fun componentDidMount() {
+        val postService = PostService(coroutineContext)
+
+        props.coroutineScope.launch {
+            val posts = postService.getPosts()
+            setState {
+                this.posts += posts
+            }
+        }
+    }
 
     override fun RBuilder.render() {
         ringHeader {
@@ -62,7 +76,14 @@ class ApplicationComponent: RComponent<ApplicationProps, ApplicationState>() {
                 +ApplicationStyles.wrapper
             }
 
-            +"Kotlin full stack application demo"
+            state.posts.map { post ->
+                styledDiv {
+                    css {
+                        +ApplicationStyles.post
+                    }
+                    postView(post)
+                }
+            }
         }
     }
 }
