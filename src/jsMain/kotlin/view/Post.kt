@@ -61,6 +61,14 @@ class PostView: RComponent<PostProps, PostState>() {
             }
 
             ringIslandContent {
+                props.user?.let {
+                    userView(it) {
+                        css {
+                            marginBottom = 16.px
+                        }
+                    }
+                }
+
                 styledDiv {
                     css {
                         +PostStyles.noComments
