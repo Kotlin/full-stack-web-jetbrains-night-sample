@@ -5,7 +5,7 @@ import react.RHandler
 import react.dom.WithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/island/content.js
-external interface  IslandContentProps: WithClassName {
+external interface IslandContentProps : WithClassName {
     var scrollableWrapperClassName: String
     var fade: Boolean
     var bottomBorder: Boolean

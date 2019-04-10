@@ -6,7 +6,7 @@ import model.PostWithComments
 import rpc.RPCService
 import kotlin.random.Random
 
-actual class PostWithCommentsService: RPCService {
+actual class PostWithCommentsService : RPCService {
     private val postService = PostService()
     private val commentsService = CommentsService(GlobalScope.coroutineContext)
 

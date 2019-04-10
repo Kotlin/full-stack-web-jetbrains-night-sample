@@ -32,4 +32,4 @@ class UserService(private val coroutineContext: CoroutineContext) {
             response.text().await()
         }
     }
- }
+}

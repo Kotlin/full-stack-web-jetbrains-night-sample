@@ -6,7 +6,7 @@ import view.ApplicationComponent
 import kotlin.browser.document
 import kotlin.coroutines.CoroutineContext
 
-private class Application: CoroutineScope {
+private class Application : CoroutineScope {
     override val coroutineContext: CoroutineContext = Job()
 
     fun start() {

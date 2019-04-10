@@ -21,7 +21,7 @@ import kotlin.random.Random
 
 val jetbrainsLogo = kotlinext.js.require("@jetbrains/logos/jetbrains/jetbrains-simple.svg")
 
-private object ApplicationStyles: StyleSheet("ApplicationStyles", isStatic = true) {
+private object ApplicationStyles : StyleSheet("ApplicationStyles", isStatic = true) {
     val wrapper by css {
         padding(32.px, 16.px)
     }
@@ -31,16 +31,16 @@ private object ApplicationStyles: StyleSheet("ApplicationStyles", isStatic = tru
     }
 }
 
-interface ApplicationProps: RProps {
+interface ApplicationProps : RProps {
     var coroutineScope: CoroutineScope
 }
 
-class ApplicationState: RState {
+class ApplicationState : RState {
     var postWithComments: List<PostWithComments> = emptyList()
     var users: List<User> = emptyList()
 }
 
-class ApplicationComponent: RComponent<ApplicationProps, ApplicationState>() {
+class ApplicationComponent : RComponent<ApplicationProps, ApplicationState>() {
     init {
         state = ApplicationState()
     }
@@ -98,9 +98,12 @@ class ApplicationComponent: RComponent<ApplicationProps, ApplicationState>() {
                     css {
                         +ApplicationStyles.post
                     }
-                    postView(postWithComments, state.users.find { it.id == postWithComments.post.userId }, onMoreComments = {
-                        onMoreComment(postWithComments.post.id)
-                    })
+                    postView(
+                        postWithComments,
+                        state.users.find { it.id == postWithComments.post.userId },
+                        onMoreComments = {
+                            onMoreComment(postWithComments.post.id)
+                        })
                 }
             }
         }

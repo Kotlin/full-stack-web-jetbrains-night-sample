@@ -5,7 +5,7 @@ import react.RHandler
 import react.dom.WithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/island/header.js
-external interface  IslandHeaderProps: WithClassName {
+external interface IslandHeaderProps : WithClassName {
     var border: Boolean
     var wrapWithTitle: Boolean
     var phase: Number

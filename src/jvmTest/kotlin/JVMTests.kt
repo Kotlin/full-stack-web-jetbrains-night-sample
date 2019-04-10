@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 @Serializable
 class TestItem
 
-class TestService: RPCService {
+class TestService : RPCService {
     fun getItem(): TestItem {
         return TestItem()
     }

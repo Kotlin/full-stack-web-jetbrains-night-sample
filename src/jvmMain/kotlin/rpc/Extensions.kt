@@ -26,12 +26,17 @@ fun <T : RPCService, R> Route.rpc(serviceClass: KClass<T>, serializer: KSerializ
             val result = function.callSuspend(*args.toTypedArray())
             val serializedResult = if (function.returnType.arguments.isNotEmpty()) {
                 when {
-                    function.returnType.isSubtypeOf(List::class.createType(function.returnType.arguments)) -> Json.stringify(serializer.list, result as List<R>)
-                    function.returnType.isSubtypeOf(Set::class.createType(function.returnType.arguments)) -> Json.stringify(serializer.set, result as Set<R>)
+                    function.returnType.isSubtypeOf(List::class.createType(function.returnType.arguments)) -> Json.stringify(
+                        serializer.list,
+                        result as List<R>
+                    )
+                    function.returnType.isSubtypeOf(Set::class.createType(function.returnType.arguments)) -> Json.stringify(
+                        serializer.set,
+                        result as Set<R>
+                    )
                     else -> SerializationException("Method must return either List<R> or Set<R>, but it returns ${function.returnType}")
                 }
-            }
-            else {
+            } else {
                 Json.stringify(serializer, result as R)
             }
             call.respond(serializedResult)

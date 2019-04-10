@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.selectAll
 import rpc.RPCService
 import kotlin.random.Random
 
-actual class PostService: RPCService {
+actual class PostService : RPCService {
     actual suspend fun getPost(id: String): Post {
         return database {
             Posts.select { Posts.postId eq id.toInt() }.firstOrNull()?.let {

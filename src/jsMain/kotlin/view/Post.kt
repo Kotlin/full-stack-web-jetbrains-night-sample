@@ -36,18 +36,18 @@ object PostStyles : StyleSheet("PostStyles", isStatic = true) {
     }
 }
 
-interface PostProps: RProps {
+interface PostProps : RProps {
     var postWithComments: PostWithComments
     var user: User?
     var onMoreComments: () -> Unit
 }
 
-class PostState: RState {
+class PostState : RState {
     var noMore: Boolean = false
     var loading: Boolean = false
 }
 
-class PostView: RComponent<PostProps, PostState>() {
+class PostView : RComponent<PostProps, PostState>() {
     private val post
         get() = props.postWithComments.post
 
@@ -89,8 +89,7 @@ class PostView: RComponent<PostProps, PostState>() {
                     css {
                         if (comments.isNotEmpty()) {
                             +PostStyles.body
-                        }
-                        else {
+                        } else {
                             +PostStyles.noComments
                         }
                     }
@@ -125,7 +124,12 @@ class PostView: RComponent<PostProps, PostState>() {
     }
 }
 
-fun RBuilder.postView(post: PostWithComments, user: User? = null, onMoreComments: () -> Unit, handler: RHandler<PostProps> = {}) {
+fun RBuilder.postView(
+    post: PostWithComments,
+    user: User? = null,
+    onMoreComments: () -> Unit,
+    handler: RHandler<PostProps> = {}
+) {
     child(PostView::class) {
         attrs.postWithComments = post
         attrs.user = user

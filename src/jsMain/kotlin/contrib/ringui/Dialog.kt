@@ -5,7 +5,7 @@ import react.RHandler
 import react.dom.WithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/dialog/dialog.js
-external interface DialogProps: WithClassName {
+external interface DialogProps : WithClassName {
     var contentClassName: String
     var show: Boolean
     var showCloseButton: Boolean

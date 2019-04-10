@@ -18,11 +18,19 @@ external fun urlEncode(value: String): String
 external fun urlDecode(encoded: String): String
 
 class Transport(private val coroutineContext: CoroutineContext) {
-    internal suspend fun <T> get(url: String, deserializationStrategy: KSerializer<T>, vararg args: Pair<String, Any>): T {
+    internal suspend fun <T> get(
+        url: String,
+        deserializationStrategy: KSerializer<T>,
+        vararg args: Pair<String, Any>
+    ): T {
         return Json.parse(deserializationStrategy, fetch(url, *args))
     }
 
-    internal suspend fun <T> getList(url: String, deserializationStrategy: KSerializer<T>, vararg args: Pair<String, Any>): List<T> {
+    internal suspend fun <T> getList(
+        url: String,
+        deserializationStrategy: KSerializer<T>,
+        vararg args: Pair<String, Any>
+    ): List<T> {
         return Json.parse(deserializationStrategy.list, fetch(url, *args))
     }
 

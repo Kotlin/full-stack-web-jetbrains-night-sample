@@ -5,7 +5,7 @@ import react.RHandler
 import react.dom.WithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/alert/alert.js
-external interface AlertProps: WithClassName {
+external interface AlertProps : WithClassName {
     var timeout: Number
     var onCloseRequest: () -> Unit
     var onClose: () -> Unit

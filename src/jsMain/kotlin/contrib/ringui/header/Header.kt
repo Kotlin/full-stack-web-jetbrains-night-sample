@@ -19,7 +19,7 @@ internal external object HeaderModule {
 }
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/header/header.js
-external interface HeaderProps: WithClassName {
+external interface HeaderProps : WithClassName {
     var spaced: Boolean
     var theme: String
 }

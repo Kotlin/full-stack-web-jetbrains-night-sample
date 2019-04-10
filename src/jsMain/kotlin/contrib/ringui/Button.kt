@@ -6,7 +6,7 @@ import react.RHandler
 import react.dom.WithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/button/button.js
-external interface ButtonProps: WithClassName {
+external interface ButtonProps : WithClassName {
     var theme: String
     var active: Boolean
     var danger: Boolean
