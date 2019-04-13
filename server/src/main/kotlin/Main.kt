@@ -82,14 +82,14 @@ fun Application.main() {
                         id = "react-app"
                         +"Loading..."
                     }
-                    script(src = "/main.bundle.js") {
+                    script(src = "/client.js") {
                     }
                 }
             }
         }
 
         static("/") {
-            files("build/bundle")
+            files("../client/build/lib")
         }
 
         route("/api") {

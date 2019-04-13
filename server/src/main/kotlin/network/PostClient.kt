@@ -20,7 +20,10 @@ import kotlin.coroutines.CoroutineContext
 @Serializable
 private class FakeJsonPostRequest {
     val token = FAKE_JSON_TOKEN
-    val data = object {
+    val data = Data()
+
+    @Serializable
+    class Data {
         val userId = "numberInt|1,10"
         val id = "numberInt"
         val title = "stringShort"
