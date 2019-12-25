@@ -1,24 +1,16 @@
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id == "org.jetbrains.kotlin.multiplatform") {
-                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
-            } else if (requested.id.id == "org.jetbrains.kotlin.nodejs") {
-                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
-            } else if (requested.id.id == "kotlin-js") {
-                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
-            } else if (requested.id.id == "kotlinx-serialization") {
+            if (requested.id.id == "kotlinx-serialization") {
                 useModule("org.jetbrains.kotlin:kotlin-serialization:${requested.version}")
-            } else if (requested.id.id == "org.jetbrains.kotlin.frontend") {
-                useModule("org.jetbrains.kotlin:kotlin-frontend-plugin:${requested.version}")
-            } 
+            }
         }
     }
 
     repositories {
-        mavenLocal()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         mavenCentral()
-//        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         maven { url 'https://plugins.gradle.org/m2/' }
     }
 }
