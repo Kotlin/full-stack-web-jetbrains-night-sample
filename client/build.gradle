@@ -11,51 +11,44 @@ repositories {
     mavenCentral()
 }
 
-ext.kotlin_version = '1.3.21'
+def kotlin_version = '1.3.60' // for kotlin-wrappers
+def kotlinx_serialization_version = '0.14.0-1.3.70-eap-42'
 
 kotlin {
     target {
         useCommonJs()
         browser()
     }
+}
 
-    sourceSets {
-        main {
-            dependencies {
-                implementation kotlin('stdlib-js')
-                implementation kotlin('test-js')
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-js'
 
-                implementation kotlin('stdlib-js')
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:0.10.0"
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.2.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$kotlinx_serialization_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.2.0"
 
-                implementation(project(':shared'))
+    implementation(project(':shared'))
 
-                implementation(npm("core-js", "^2.0.0"))
-                implementation(npm("svg-inline-loader", "0.8.0"))
-                implementation "org.jetbrains.kotlinx:kotlinx-html:0.6.12"
-                implementation "org.jetbrains:kotlin-react:16.9.0-pre.89-kotlin-1.3.60"
-                implementation "org.jetbrains:kotlin-react-dom:16.9.0-pre.89-kotlin-1.3.60"
-                implementation "org.jetbrains:kotlin-styled:1.0.0-pre.89-kotlin-1.3.60"
-                implementation "org.jetbrains:kotlin-extensions:1.0.1-pre.89-kotlin-1.3.60"
-                implementation "org.jetbrains:kotlin-css:1.0.0-pre.89-kotlin-1.3.60"
-                implementation "org.jetbrains:kotlin-css-js:1.0.0-pre.89-kotlin-1.3.60"
-                implementation(npm("react", "16.9.0"))
-                implementation(npm("react-dom", "16.9.0"))
-                implementation(npm("inline-style-prefixer", "5.1.0"))
-                implementation(npm("styled-components", "5.0.0"))
-                implementation(npm("@jetbrains/logos", "1.1.4"))
-                implementation(npm("@jetbrains/ring-ui", "2.0.0-beta.11"))
-            }
-        }
+    implementation(npm("core-js", "^2.0.0"))
+    implementation(npm("svg-inline-loader", "0.8.0"))
+    implementation "org.jetbrains.kotlinx:kotlinx-html:0.6.12"
+    implementation "org.jetbrains:kotlin-react:16.9.0-pre.89-kotlin-$kotlin_version"
+    implementation "org.jetbrains:kotlin-react-dom:16.9.0-pre.89-kotlin-$kotlin_version"
+    implementation "org.jetbrains:kotlin-styled:1.0.0-pre.89-kotlin-$kotlin_version"
+    implementation "org.jetbrains:kotlin-extensions:1.0.1-pre.89-kotlin-$kotlin_version"
+    implementation "org.jetbrains:kotlin-css:1.0.0-pre.89-kotlin-$kotlin_version"
+    implementation "org.jetbrains:kotlin-css-js:1.0.0-pre.89-kotlin-$kotlin_version"
+    implementation(npm("react", "16.9.0"))
+    implementation(npm("react-dom", "16.9.0"))
+    implementation(npm("react-is", "16.9.0"))
+    implementation(npm("inline-style-prefixer", "5.1.0"))
+    implementation(npm("styled-components", "4.3.2"))
+    implementation(npm("@jetbrains/logos", "1.1.4"))
+    implementation(npm("@jetbrains/ring-ui", "2.0.0-beta.11"))
 
-        test {
-            dependencies {
-                implementation(npm("enzyme", "3.9.0"))
-                implementation(npm("enzyme-adapter-react-16", "1.12.1"))
-            }
-        }
-    }
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-js'
+    testImplementation(npm("enzyme", "3.9.0"))
+    testImplementation(npm("enzyme-adapter-react-16", "1.12.1"))
 }
 
 run {
