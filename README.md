@@ -4,6 +4,8 @@ Fork of https://github.com/mkraynov/kfsad with the new Kotlin/JS Gradle Plugin
 
 A full-stack demo application written in Kotlin for [JetBrains Night Moscow 2019](https://info.jetbrains.com/jetbrains-night-moscow-2019).
 
+![screenshot](images/screenshot.png)
+
 ## Run application
 
 - `./gradlew :server:run` will build optimized application bundle and run it on https://localhost:8080 (it takes some time to build optimized js bundle, so it is not useful for development)
