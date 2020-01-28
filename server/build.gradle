@@ -46,3 +46,29 @@ processResources {
     //todo: bug?
     dependsOn project(":client").tasks.getByName('browserProductionWebpack')
 }
+
+
+////// Dev server
+
+task devServerResources(type: Copy) {
+    destinationDir = new File(project.buildDir, "dev-resources")
+    from sourceSets.main.resources
+}
+
+task prepareDevServer {
+    dependsOn "compileKotlin"
+    dependsOn "devServerResources"
+}
+
+task devServer(type: JavaExec) {
+    dependsOn "prepareDevServer"
+
+    classpath = project.files(
+            configurations.runtimeClasspath,
+            new File(project.buildDir, "classes/kotlin/main"),
+            new File(project.buildDir, "dev-resources")
+    )
+    main = 'io.ktor.server.netty.EngineMain'
+}
+
+///////////////

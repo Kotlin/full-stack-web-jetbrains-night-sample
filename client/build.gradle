@@ -59,6 +59,7 @@ kotlin {
 }
 
 run {
-    // use :server:run instead
-    enabled = false
+    project(":server").afterEvaluate {
+        dependsOn project(":server").tasks.getByName('prepareDevServer')
+    }
 }
