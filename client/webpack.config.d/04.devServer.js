@@ -1,7 +1,10 @@
 console.log("Running ktor in background...")
+// $ROOT/build/js/packages/kotlin-full-stack-application-demo-client
+const rootProject = require('path').resolve(__dirname, '../../../../')
+console.log(rootProject)
 require('child_process').exec(
     "./gradlew :server:devServer", {
-        "cwd": "/Users/Sergey.Rostov/kotlin-full-stack-application-demo"
+        "cwd": rootProject
     }, (err, stdout, stderr) => {
          if (err) {
              console.log("Cannot run ktor server: " + err);
