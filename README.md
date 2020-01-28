@@ -8,10 +8,11 @@ A full-stack demo application written in Kotlin for [JetBrains Night Moscow 2019
 
 ## Run application
 
-- `./gradlew :server:run` will build optimized application bundle and run it on https://localhost:8080 (it takes some time to build optimized js bundle, so it is not useful for development)
-- **NOT IMPLEMENTED YET** `./gradlew :client:run -t` will run development application at https://localhost:8080 with live reload. It runs ktor and webpack dev servers under the hood:
-    - Webpack dev server will be run at the front https://localhost:8080. Webpack dev server will call ktor for everything expect client.js. This is required for dealing with CORS
-    - Ktor server will be spawend internally at https://localhost:8081
+- `./gradlew :server:run` will build optimized application bundle and run it on https://localhost:8080 (it takes some time to build optimized js bundle, so it is not useful for frontend development)
+- `./gradlew :client:run -t` will run development application at https://localhost:8080 with live reload. It runs ktor and webpack dev servers under the hood:
+    - Webpack dev server will be started at the front https://localhost:8080.            
+    - Ktor server will be spawend internally at https://localhost:8081 in separate gradle process (webpack devserver will start it)
+    - Webpack dev server will call ktor for everything expect `*.js` files.     
     
 ## Distribution
 
