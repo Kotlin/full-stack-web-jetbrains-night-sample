@@ -1,6 +1,19 @@
 # kotlin-full-stack-application-demo
 
+Fork of https://github.com/mkraynov/kfsad with the new Kotlin/JS Gradle Plugin
+
 A full-stack demo application written in Kotlin for [JetBrains Night Moscow 2019](https://info.jetbrains.com/jetbrains-night-moscow-2019).
+
+## Run application
+
+- `./gradlew :server:run` will build optimized application bundle and run it on https://localhost:8080 (it takes some time to build optimized js bundle, so it is not useful for development)
+- **NOT IMPLEMENTED YET** `./gradlew :client:run -t` will run development application at https://localhost:8080 with live reload. It runs ktor and webpack dev servers under the hood:
+    - Webpack dev server will be run at the front https://localhost:8080. Webpack dev server will call ktor for everything expect client.js. This is required for dealing with CORS
+    - Ktor server will be spawend internally at https://localhost:8081
+    
+## Distribution
+
+- `./gradlew :server:build` will create `server/build/distributions/server-0.1.1.zip`. You can deploy it on the server and run `bin/server` to start the server. Client is included into the `lib/server.jar` 
 
 ## Description
 
@@ -22,30 +35,6 @@ The "Load more comments" button fetches additional comments for the post using t
 
 This application has no error handling and has very limited RPC serialization. It's not meant for production use and serves only as a technology example.
 
-### Useful Gradle tasks
-
-`gradle run` runs webpack-dev-server and the Ktor application. You can find logs at `build/logs`.
-
-`gradle run -t` runs continuous build (watch mode).
-
-`gradle build` to create static files bundle.
-
-`gradle :client:run` runs webpack-dev-server only.
-
-`gradle :server:run` runs the Ktor application only.
-
-`gradle :server:test` to run common and JVM tests with JUnit.
-
-`gradle :client:test` to run common and JS tests with Mocha and Karma.
-
-### Hosts
-webpack-dev-server responds at http://0.0.0.0:8080, the Ktor application responds at http://0.0.0.0:8081.
-
 ### Contact information
 
-Feel free to contact me via:
-- Mikhail.Kraynov@jetbrains.com
-- [Kotlin Slack channel](https://kotlin.slack.com)
-- GitHub issues
-
-Pull requests are welcome!
+Please refer original repo: https://github.com/mkraynov/kfsad
