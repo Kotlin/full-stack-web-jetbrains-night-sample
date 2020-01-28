@@ -33,17 +33,17 @@ kotlin {
 
                 implementation(npm("core-js", "^2.0.0"))
                 implementation(npm("svg-inline-loader", "0.8.0"))
-                implementation(npm("kotlinx-html", "0.6.12"))
-                implementation(npm("@jetbrains/kotlin-react", "16.6.0-pre.67"))
-                implementation(npm("@jetbrains/kotlin-react-dom", "16.6.0-pre.67"))
-                implementation(npm("@jetbrains/kotlin-styled", "1.0.0-pre.67"))
-                implementation(npm("@jetbrains/kotlin-extensions", "1.0.1-pre.67"))
-                implementation(npm("@jetbrains/kotlin-css", "1.0.0-pre.67"))
-                implementation(npm("@jetbrains/kotlin-css-js", "1.0.0-pre.67"))
-                implementation(npm("react", "16.8.3"))
-                implementation(npm("react-dom", "16.8.3"))
-                implementation(npm("inline-style-prefixer", "5.0.4"))
-                implementation(npm("styled-components", "3.4.10"))
+                implementation "org.jetbrains.kotlinx:kotlinx-html:0.6.12"
+                implementation "org.jetbrains:kotlin-react:16.9.0-pre.89-kotlin-1.3.60"
+                implementation "org.jetbrains:kotlin-react-dom:16.9.0-pre.89-kotlin-1.3.60"
+                implementation "org.jetbrains:kotlin-styled:1.0.0-pre.89-kotlin-1.3.60"
+                implementation "org.jetbrains:kotlin-extensions:1.0.1-pre.89-kotlin-1.3.60"
+                implementation "org.jetbrains:kotlin-css:1.0.0-pre.89-kotlin-1.3.60"
+                implementation "org.jetbrains:kotlin-css-js:1.0.0-pre.89-kotlin-1.3.60"
+                implementation(npm("react", "16.9.0"))
+                implementation(npm("react-dom", "16.9.0"))
+                implementation(npm("inline-style-prefixer", "5.1.0"))
+                implementation(npm("styled-components", "5.0.0"))
                 implementation(npm("@jetbrains/logos", "1.1.4"))
                 implementation(npm("@jetbrains/ring-ui", "2.0.0-beta.11"))
             }

@@ -4,10 +4,8 @@ import contrib.ringui.island.ringIsland
 import contrib.ringui.island.ringIslandContent
 import contrib.ringui.island.ringIslandHeader
 import contrib.ringui.ringButton
-import kotlinx.css.BorderStyle
-import kotlinx.css.Color
+import kotlinx.css.*
 import kotlinx.css.properties.borderBottom
-import kotlinx.css.px
 import model.PostWithComments
 import model.User
 import react.*

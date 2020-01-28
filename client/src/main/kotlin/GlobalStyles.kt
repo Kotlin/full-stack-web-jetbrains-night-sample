@@ -11,6 +11,6 @@ object GlobalStyles {
             }
         }
 
-        StyledComponents.injectGlobal(styles.toString())
+        StyledComponents.createGlobalStyle(styles.toString())
     }
 }

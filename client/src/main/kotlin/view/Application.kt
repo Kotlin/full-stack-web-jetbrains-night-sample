@@ -5,7 +5,9 @@ import contrib.ringui.header.ringLogo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.css.marginBottom
 import kotlinx.css.padding
+import kotlinx.css.paddingLeft
 import kotlinx.css.px
 import model.PostWithComments
 import model.User

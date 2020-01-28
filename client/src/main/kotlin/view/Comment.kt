@@ -1,6 +1,8 @@
 package view
 
 import kotlinx.css.FontWeight
+import kotlinx.css.fontWeight
+import kotlinx.css.marginRight
 import kotlinx.css.px
 import model.Comment
 import react.RBuilder
