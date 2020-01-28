@@ -57,3 +57,8 @@ kotlin {
         }
     }
 }
+
+run {
+    // use :server:run instead
+    enabled = false
+}

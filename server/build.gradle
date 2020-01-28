@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
     id 'kotlinx-serialization'
     id 'application'
+    id 'distribution'
 }
 
 repositories {
@@ -35,11 +36,13 @@ dependencies {
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }
 
-//ktor {
-//    port = 8081
-//    mainClass = "io.ktor.server.netty.EngineMain"
-//}
-
 application {
     mainClassName = 'io.ktor.server.netty.EngineMain'
+}
+
+processResources {
+    from project(":client").tasks.getByName('browserDistribution')
+
+    //todo: bug?
+    dependsOn project(":client").tasks.getByName('browserProductionWebpack')
 }

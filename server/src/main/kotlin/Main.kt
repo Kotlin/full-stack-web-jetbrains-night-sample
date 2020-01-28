@@ -6,6 +6,7 @@ import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
 import io.ktor.html.respondHtml
 import io.ktor.http.content.files
+import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.jackson.jackson
 import io.ktor.routing.get
@@ -89,7 +90,7 @@ fun Application.main() {
         }
 
         static("/") {
-            files("../client/build/lib")
+            resources("/")
         }
 
         route("/api") {
