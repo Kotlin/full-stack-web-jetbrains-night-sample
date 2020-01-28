@@ -1,32 +1,35 @@
-console.log("Running ktor in background...")
-// $ROOT/build/js/packages/kotlin-full-stack-application-demo-client
-const rootProject = require('path').resolve(__dirname, '../../../../')
-console.log(rootProject)
-require('child_process').exec(
-    "./gradlew :server:devServer", {
-        "cwd": rootProject
-    }, (err, stdout, stderr) => {
-         if (err) {
-             console.log("Cannot run ktor server: " + err);
-             return;
+const shouldRunServer = config.mode !== "production"
+const serverTaskName = ":server:devServer"
+const serverUrl = 'http://localhost:8081'
+
+if (shouldRunServer) {
+    console.log("Running " + serverTaskName + " in background...")
+    // __dirname = $ROOT/build/js/packages/$PACKAGE_NAME
+    // rootProject = $ROOT
+    const rootProject = require('path').resolve(__dirname, '../../../../')
+    require('child_process').exec(
+        "./gradlew " + serverTaskName,
+        {
+            "cwd": rootProject
+        },
+        (err, stdout, stderr) => {
+             if (err) {
+                 console.log("Cannot run " + serverTaskName + " server: " + err);
+             }
          }
+     )
 
-         // the *entire* stdout and stderr (buffered)
-         console.log(`stdout: ${stdout}`);
-         console.log(`stderr: ${stderr}`);
+     config.devServer = {
+         proxy: {
+           '/': {
+             target: serverUrl,
+             secure: false,
+             bypass: function(req, res, proxyOptions) {
+               if (req.headers.accept.indexOf('.js') !== -1) {
+                 return req.headers.accept;
+               }
+             }
+           }
+         }
      }
- )
-
-config.devServer = {
-    proxy: {
-      '/': {
-        target: 'http://localhost:8081',
-        secure: false,
-        bypass: function(req, res, proxyOptions) {
-          if (req.headers.accept.indexOf('client.js') !== -1) {
-            return req.headers.accept;
-          }
-        }
-      }
-    }
-}
+ }
