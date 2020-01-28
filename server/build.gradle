@@ -53,6 +53,7 @@ processResources {
 task devServerResources(type: Copy) {
     destinationDir = new File(project.buildDir, "dev-resources")
     from sourceSets.main.resources
+    filter { line -> line.replaceAll('port = 8080', 'port = 8081') }
 }
 
 task prepareDevServer {
