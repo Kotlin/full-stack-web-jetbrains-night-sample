@@ -41,7 +41,7 @@ application {
 }
 
 processResources {
-    from project(":client").tasks.getByName('browserDistribution')
+    from project(":client").tasks.getByName('browserProductionWebpack').destinationDirectory
 
     //todo: bug?
     dependsOn project(":client").tasks.getByName('browserProductionWebpack')
