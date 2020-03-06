@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.css.*
 import kotlinx.css.properties.lh
 import kotlinx.html.*
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 import model.Post

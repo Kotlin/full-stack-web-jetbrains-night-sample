@@ -3,6 +3,7 @@ package services
 import JSON_PLACEHOLDER_URL
 import kotlinx.coroutines.await
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 import model.User

@@ -3,6 +3,7 @@ package rpc
 import kotlinx.coroutines.await
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 import org.w3c.fetch.RequestCredentials
