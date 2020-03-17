@@ -8,8 +8,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.apache.Apache
 import io.ktor.client.request.get
 import io.ktor.client.request.request
-import io.ktor.client.response.HttpResponse
-import io.ktor.client.response.readText
+import io.ktor.client.statement.HttpStatement
+import io.ktor.client.statement.readText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpMethod
 import io.ktor.http.content.TextContent
@@ -42,13 +42,13 @@ class PostClient(private val coroutineContext: CoroutineContext) {
     suspend fun getPosts(): String {
         return withContext(coroutineContext) {
             val fakeJsonResponse = if (!fallback) {
-                client.request<HttpResponse>(FAKE_JSON_URL) {
+                client.request<HttpStatement>(FAKE_JSON_URL) {
                     method = HttpMethod.Post
                     body = TextContent(
                         json.writeValueAsString(FakeJsonPostRequest()),
                         contentType = ContentType.Application.Json
                     )
-                }
+                }.execute()
             } else {
                 null
             }

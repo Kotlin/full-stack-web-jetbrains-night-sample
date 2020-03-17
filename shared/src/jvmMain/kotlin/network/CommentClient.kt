@@ -7,8 +7,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.apache.Apache
 import io.ktor.client.request.get
 import io.ktor.client.request.request
-import io.ktor.client.response.HttpResponse
-import io.ktor.client.response.readText
+import io.ktor.client.statement.HttpStatement
+import io.ktor.client.statement.readText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpMethod
 import io.ktor.http.content.TextContent
@@ -27,13 +27,13 @@ actual class CommentClient actual constructor(coroutineContext: CoroutineContext
         return withContext(coroutineContext) {
             val fakeJsonRequestBody = FakeJsonCommentRequest.create(postId.toInt(), count)
             val fakeJsonResponse = if (!fallback) {
-                client.request<HttpResponse>(FAKE_JSON_URL) {
+                client.request<HttpStatement>(FAKE_JSON_URL) {
                     method = HttpMethod.Post
                     body = TextContent(
                         json.writeValueAsString(fakeJsonRequestBody),
                         contentType = ContentType.Application.Json
                     )
-                }
+                }.execute()
             } else {
                 null
             }
@@ -41,8 +41,7 @@ actual class CommentClient actual constructor(coroutineContext: CoroutineContext
             if (fakeJsonResponse?.status?.value == 200) {
                 if (count <= 1) {
                     "[${fakeJsonResponse.readText()}]"
-                }
-                else {
+                } else {
                     fakeJsonResponse.readText()
                 }
             } else {
