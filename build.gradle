@@ -1,0 +1,8 @@
+plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.4-M1-eap-93' apply false
+    id 'kotlinx-serialization' version '1.4-M1-eap-93' apply false
+}
+
+allprojects {
+    version = "0.1.1"
+}
