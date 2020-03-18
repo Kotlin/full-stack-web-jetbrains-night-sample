@@ -16,13 +16,21 @@ external interface UserCardProps : RProps {
     var wording: UserCardWording
 }
 
-data class UserCardModel(
-    val name: String,
-    val login: String,
-    val avatarUrl: String,
-    val email: String? = null,
-    val href: String? = null
-)
+external interface UserCardModel{
+    val name: String
+    val login: String
+    val avatarUrl: String
+    val email: String? get() = definedExternally
+    val href: String? get() = definedExternally
+}
+
+data class UserCardModelImpl(
+    override val name: String,
+    override val login: String,
+    override val avatarUrl: String,
+    override val email: String? = null,
+    override val href: String? = null
+) : UserCardModel
 
 data class UserCardWording(
     val banned: String,

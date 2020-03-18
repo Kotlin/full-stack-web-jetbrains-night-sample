@@ -33,7 +33,7 @@ private object ApplicationStyles : StyleSheet("ApplicationStyles", isStatic = tr
     }
 }
 
-interface ApplicationProps : RProps {
+external interface ApplicationProps : RProps {
     var coroutineScope: CoroutineScope
 }
 
@@ -41,6 +41,20 @@ class ApplicationState : RState {
     var postWithComments: List<PostWithComments> = emptyList()
     var users: List<User> = emptyList()
 }
+
+/*
+TODO likely it also should be rewritten to something like below, but it doesn't work for some reason.
+external interface ApplicationState : RState {
+    var postWithComments: List<PostWithComments>
+    var users: List<User>
+}
+
+fun ApplicationState() = object : ApplicationState {
+    override var postWithComments: List<PostWithComments> = emptyList()
+    override var users: List<User> = emptyList()
+}
+*/
+
 
 class ApplicationComponent : RComponent<ApplicationProps, ApplicationState>() {
     init {

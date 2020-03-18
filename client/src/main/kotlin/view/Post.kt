@@ -34,15 +34,20 @@ object PostStyles : StyleSheet("PostStyles", isStatic = true) {
     }
 }
 
-interface PostProps : RProps {
+external interface PostProps : RProps {
     var postWithComments: PostWithComments
     var user: User?
     var onMoreComments: () -> Unit
 }
 
-class PostState : RState {
-    var noMore: Boolean = false
-    var loading: Boolean = false
+external interface PostState : RState {
+    var noMore: Boolean
+    var loading: Boolean
+}
+
+fun PostState() = object : PostState {
+    override var noMore: Boolean = false
+    override var loading: Boolean = false
 }
 
 class PostView : RComponent<PostProps, PostState>() {
