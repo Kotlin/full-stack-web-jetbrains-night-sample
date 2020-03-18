@@ -10,7 +10,7 @@ import styled.styledDiv
 private fun User.toUserCardModel() = UserCardModel(
     name = this.name,
     login = this.username,
-    avatarUrl = "http://i.pravatar.cc/56?u=${this.username}",
+    avatarUrl = "https://i.pravatar.cc/56?u=${this.username}",
     email = this.email
 )
 
