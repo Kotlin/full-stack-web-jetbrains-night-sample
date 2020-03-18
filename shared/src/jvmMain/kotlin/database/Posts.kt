@@ -1,6 +1,6 @@
 package database
 
-import org.jetbrains.exposed.dao.IntIdTable
+import org.jetbrains.exposed.dao.id.IntIdTable
 
 object Posts : IntIdTable() {
     val postId = integer("postId")
