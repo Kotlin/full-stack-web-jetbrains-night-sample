@@ -67,7 +67,7 @@ kotlin {
                 implementation "ch.qos.logback:logback-classic:$logback_version"
                 implementation "org.jetbrains:kotlin-css-jvm:1.0.0-pre.93-kotlin-$kotlin_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinx_serialization_version"
-                implementation "org.jetbrains.exposed:exposed:0.13.2"
+                implementation "org.jetbrains.exposed:exposed:0.22.1"
             }
         }
         jvmTest {
