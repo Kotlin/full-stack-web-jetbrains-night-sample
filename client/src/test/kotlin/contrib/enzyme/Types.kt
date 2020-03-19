@@ -2,6 +2,22 @@ package contrib.enzyme
 
 import org.w3c.dom.Element
 
-class EnzymeOptions(val adapter: EnzymeAdapter)
+external interface EnzymeOptions {
+    val adapter: EnzymeAdapter
+}
 
-class MountOptions(val context: Any? = null, val attachTo: Element? = null)
+fun EnzymeOptions(adapter: EnzymeAdapter): EnzymeOptions = with(js("({})")) {
+    this.adapter = adapter
+    this
+}
+
+external interface MountOptions {
+    val context: Any?
+    val attachTo: Element?
+}
+
+fun MountOptions(context: Any? = null, attachTo: Element? = null): MountOptions = with(js("({})")) {
+    this.context = context
+    this.attachTo = attachTo
+    this
+}
