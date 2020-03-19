@@ -27,7 +27,5 @@ class RPCTests {
 
         route.rpc(TestService::class, TestItem.serializer())
         assertEquals(route.children.size, 2)
-
-        assertEquals("/getItem", route.children.first().toString())
     }
 }
