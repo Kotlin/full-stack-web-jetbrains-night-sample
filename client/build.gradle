@@ -49,8 +49,8 @@ dependencies {
     implementation(npm("@jetbrains/ring-ui", "2.0.0-beta.11"))
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test-js'
-    implementation(npm("enzyme", "3.9.0"))
-    implementation(npm("enzyme-adapter-react-16", "1.12.1"))
+    testImplementation(npm("enzyme", "3.9.0"))
+    testImplementation(npm("enzyme-adapter-react-16", "1.12.1"))
 }
 
 run {
