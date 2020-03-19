@@ -37,6 +37,7 @@ external interface ApplicationProps : RProps {
     var coroutineScope: CoroutineScope
 }
 
+@JsExport
 class ApplicationState : RState {
     var postWithComments: List<PostWithComments> = emptyList()
     var users: List<User> = emptyList()
@@ -55,7 +56,7 @@ fun ApplicationState() = object : ApplicationState {
 }
 */
 
-
+@JsExport
 class ApplicationComponent : RComponent<ApplicationProps, ApplicationState>() {
     init {
         state = ApplicationState()
