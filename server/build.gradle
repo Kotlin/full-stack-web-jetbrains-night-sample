@@ -16,10 +16,10 @@ repositories {
     mavenCentral()
 }
 
-def kotlin_version = '1.4-M1-release-99' // for kotlin-wrappers
-def ktor_version = '1.3.2-1.4-M1-release-99'
+def kotlin_version = '1.4-M1' // for kotlin-wrappers
+def ktor_version = '1.3.2-1.4-M1'
 def logback_version = '1.2.3'
-def kotlinx_serialization_version = '0.20.0-1.4-M1-release-99'
+def kotlinx_serialization_version = '0.20.0-1.4-M1'
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"

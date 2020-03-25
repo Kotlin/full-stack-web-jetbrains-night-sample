@@ -11,9 +11,9 @@ repositories {
     mavenCentral()
 }
 
-def kotlin_version = '1.4-M1-release-99' // for kotlin-wrappers
-def kotlinx_serialization_version = '0.20.0-1.4-M1-release-99'
-def kotlinx_coroutines_version = '1.3.5-1.4-M1-release-99'
+def kotlin_version = '1.4-M1' // for kotlin-wrappers
+def kotlinx_serialization_version = '0.20.0-1.4-M1'
+def kotlinx_coroutines_version = '1.3.5-1.4-M1'
 
 kotlin {
     target {
@@ -31,7 +31,7 @@ dependencies {
 
     implementation(project(':shared'))
 
-    implementation(npm("core-js", "^2.0.0"))
+    implementation(npm("core-js", "2.6.5"))
     implementation(npm("svg-inline-loader", "0.8.0"))
     implementation "org.jetbrains.kotlinx:kotlinx-html:0.7.1-build-1707"
     implementation "org.jetbrains:kotlin-react:16.13.0-pre.93-kotlin-$kotlin_version"
@@ -45,8 +45,8 @@ dependencies {
     implementation(npm("react-is", "16.13.0"))
     implementation(npm("inline-style-prefixer", "5.1.0"))
     implementation(npm("styled-components", "4.3.2"))
-    implementation(npm("@jetbrains/logos", "1.1.4"))
-    implementation(npm("@jetbrains/ring-ui", "2.0.0-beta.11"))
+    implementation(npm("@jetbrains/logos", "1.1.6"))
+    implementation(npm("@jetbrains/ring-ui", "3.0.4"))
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test-js'
     testImplementation(npm("enzyme", "3.9.0"))
