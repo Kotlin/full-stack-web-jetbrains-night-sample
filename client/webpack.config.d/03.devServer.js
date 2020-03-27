@@ -10,7 +10,7 @@
         // __dirname = $ROOT/build/js/packages/$PACKAGE_NAME
         // rootProject = $ROOT
         const rootProject = require('path').resolve(__dirname, '../../../../')
-        require('child_process').exec(
+        const child = require('child_process').exec(
             "./gradlew " + serverTaskName,
             {
                 "cwd": rootProject
@@ -22,15 +22,27 @@
             }
         )
 
-        config.devServer = {
-            proxy: {
-                '/': {
-                    target: serverUrl,
-                    secure: false,
-                    bypass: function (req, res, proxyOptions) {
-                        if (req.headers.accept.indexOf('.js') !== -1) {
-                            return req.headers.accept;
-                        }
+        let isBackendRun = false
+
+        config.devServer = config.devServer || {}
+        config.devServer.before = function (app, server, compiler) {
+            if (isBackendRun) return
+
+            isBackendRun = true
+
+            const originalClose = server.middleware.close;
+            server.middleware.close = function () {
+                child.kill('SIGINT');
+                originalClose(arguments)
+            }
+        }
+        config.devServer.proxy = {
+            '/': {
+                target: serverUrl,
+                secure: false,
+                bypass: function (req, res, proxyOptions) {
+                    if (req.headers.accept.indexOf('.js') !== -1) {
+                        return req.headers.accept;
                     }
                 }
             }
