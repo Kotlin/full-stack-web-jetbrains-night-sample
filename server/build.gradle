@@ -16,6 +16,7 @@ repositories {
     mavenCentral()
 }
 
+def kotlin_version = 'kotlin-1.3.70' // for kotlin-wrappers
 def ktor_version = '1.3.2'
 def logback_version = '1.2.3'
 def kotlinx_serialization_version = '0.20.0'
@@ -27,7 +28,7 @@ dependencies {
     implementation "io.ktor:ktor-jackson:$ktor_version"
     implementation "io.ktor:ktor-html-builder:$ktor_version"
     implementation "ch.qos.logback:logback-classic:$logback_version"
-    implementation "org.jetbrains:kotlin-css-jvm:1.0.0-pre.89-kotlin-1.3.60"
+    implementation "org.jetbrains:kotlin-css:1.0.0-pre.94-kotlin-$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinx_serialization_version"
     implementation "org.jetbrains.exposed:exposed-core:0.22.1"
     implementation "org.jetbrains.exposed:exposed-dao:0.22.1"
