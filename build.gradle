@@ -8,12 +8,8 @@ allprojects {
 
     repositories {
         jcenter()
-        mavenCentral()
         maven { url "https://dl.bintray.com/kotlin/kotlinx" }
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
-        maven { url "https://dl.bintray.com/kotlin/ktor" }
-        maven { url "https://kotlin.bintray.com/kotlin-js-wrappers" }
-        maven { url "https://dl.bintray.com/kotlin/exposed" }
     }
 }
