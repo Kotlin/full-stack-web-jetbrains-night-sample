@@ -8,6 +8,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 import model.User
 import org.w3c.fetch.RequestInit
+import rpc.parse
 import kotlin.browser.window
 import kotlin.coroutines.CoroutineContext
 import kotlin.js.json
@@ -15,12 +16,12 @@ import kotlin.js.json
 class UserService(private val coroutineContext: CoroutineContext) {
     suspend fun getUsers(): List<User> {
         val response = fetch("$JSON_PLACEHOLDER_URL/users")
-        return Json.parse(User.serializer().list, response)
+        return parse(User.serializer().list, response)
     }
 
     suspend fun getUser(id: Int): User {
         val response = fetch("$JSON_PLACEHOLDER_URL/users/$id")
-        return Json.parse(User.serializer(), response)
+        return parse(User.serializer(), response)
     }
 
     private suspend fun fetch(url: String): String {

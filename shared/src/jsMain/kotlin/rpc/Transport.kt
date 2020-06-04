@@ -2,6 +2,7 @@ package rpc
 
 import kotlinx.coroutines.await
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
@@ -24,7 +25,7 @@ class Transport(private val coroutineContext: CoroutineContext) {
         deserializationStrategy: KSerializer<T>,
         vararg args: Pair<String, Any>
     ): T {
-        return Json.parse(deserializationStrategy, fetch(url, *args))
+        return parse(deserializationStrategy, fetch(url, *args))
     }
 
     internal suspend fun <T> getList(
@@ -32,7 +33,7 @@ class Transport(private val coroutineContext: CoroutineContext) {
         deserializationStrategy: KSerializer<T>,
         vararg args: Pair<String, Any>
     ): List<T> {
-        return Json.parse(deserializationStrategy.list, fetch(url, *args))
+        return parse(deserializationStrategy.list, fetch(url, *args))
     }
 
     private suspend fun fetch(method: String, vararg args: Pair<String, Any>): String {
@@ -50,5 +51,13 @@ class Transport(private val coroutineContext: CoroutineContext) {
 
             response.text().await()
         }
+    }
+}
+
+fun <T> parse(serializationStrategy: DeserializationStrategy<T>, string: String): T {
+    return try {
+        Json.parse(serializationStrategy, string)
+    } catch (e: Throwable) {
+        throw IllegalStateException(string)
     }
 }
