@@ -3,6 +3,7 @@ import kotlinx.coroutines.Job
 import react.buildElement
 import react.dom.render
 import view.ApplicationComponent
+import view.ErrorBoundaryComponent
 import kotlin.browser.document
 import kotlin.coroutines.CoroutineContext
 
@@ -12,8 +13,10 @@ private class Application : CoroutineScope {
     fun start() {
         document.getElementById("react-app")?.let {
             render(buildElement {
-                child(ApplicationComponent::class) {
-                    attrs.coroutineScope = this@Application
+                child(ErrorBoundaryComponent::class) {
+                    child(ApplicationComponent::class) {
+                        attrs.coroutineScope = this@Application
+                    }
                 }
             }, it)
         }
