@@ -3,11 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
-def kotlin_version = 'pre.107-kotlin-1.4-M2' // for kotlin-wrappers
-def ktor_version = '1.3.2-1.4-M2'
-def kotlinx_serialization_version = '0.20.0-1.4-M2'
-def kotlinx_coroutines_version = '1.3.7-1.4-M2'
-def logback_version = '1.2.3'
+def kotlinxSerializationVersion = getProperties()["kotlinx.serialization.version"]
+def kotlinxCoroutinesVersion = getProperties()["kotlinx.coroutines.version"]
+def ktorVersion = getProperties()["ktor.version"]
+def kotlinWrappersSuffix = getProperties()["kotlin.wrappers.suffix"]
+def logbackVersion =  getProperties()["logback.version"]
 
 kotlin {
     jvm()
@@ -38,7 +38,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation kotlin('stdlib-common')
-                implementation "org.jetbrains:kotlin-css:1.0.0-$kotlin_version"
+                implementation "org.jetbrains:kotlin-css:1.0.0-$kotlinWrappersSuffix"
             }
         }
         commonTest {
@@ -50,13 +50,13 @@ kotlin {
         jvmMain {
             dependencies {
                 implementation kotlin('stdlib-jdk8')
-                implementation "io.ktor:ktor-server-netty:$ktor_version"
-                implementation "io.ktor:ktor-client-apache:$ktor_version"
-                implementation "io.ktor:ktor-jackson:$ktor_version"
-                implementation "io.ktor:ktor-html-builder:$ktor_version"
-                implementation "ch.qos.logback:logback-classic:$logback_version"
-                implementation "org.jetbrains:kotlin-css:1.0.0-$kotlin_version"
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinx_serialization_version"
+                implementation "io.ktor:ktor-server-netty:$ktorVersion"
+                implementation "io.ktor:ktor-client-apache:$ktorVersion"
+                implementation "io.ktor:ktor-jackson:$ktorVersion"
+                implementation "io.ktor:ktor-html-builder:$ktorVersion"
+                implementation "ch.qos.logback:logback-classic:$logbackVersion"
+                implementation "org.jetbrains:kotlin-css:1.0.0-$kotlinWrappersSuffix"
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinxSerializationVersion"
                 implementation "org.jetbrains.exposed:exposed-core:0.22.1"
                 implementation "org.jetbrains.exposed:exposed-dao:0.22.1"
                 implementation "org.jetbrains.exposed:exposed-jdbc:0.22.1"
@@ -72,8 +72,8 @@ kotlin {
         jsMain {
             dependencies {
                 implementation kotlin('stdlib-js')
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$kotlinx_serialization_version"
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$kotlinx_coroutines_version"
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$kotlinxSerializationVersion"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$kotlinxCoroutinesVersion"
             }
         }
         jsTest {
