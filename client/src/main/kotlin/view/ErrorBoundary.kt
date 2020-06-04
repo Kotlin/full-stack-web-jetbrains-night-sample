@@ -41,13 +41,14 @@ class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
                         icon = require("@jetbrains/icons/frown.svg")
                         if (error is TransportException) {
                             code = "Remote server error"
-                            message = "no answer from remote server."
+                            message = "no answer."
                             description =
-                                "This problem is not related with demo. It is no answer from remote server with stub data."
+                                "It is temporary problem which is not related with demo. Try again later."
                         } else {
-                            code = "Prototype error"
+                            code = "Demo error"
+                            message = "unexpected."
                             description =
-                                "This problem is likely related with demo."
+                                "This problem is likely related with demo.\nSubmit issue on https://github.com/Kotlin/kotlin-full-stack-application-demo"
                         }
                     }
                     error.message?.let {
