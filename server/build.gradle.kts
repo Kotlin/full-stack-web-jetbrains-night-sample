@@ -41,10 +41,7 @@ application {
 }
 
 tasks.withType<Copy>().named("processResources") {
-    from(project(":client").tasks.withType<KotlinWebpack>().named("browserProductionWebpack").map { it.destinationDirectory })
-
-    //todo: bug?
-    dependsOn(project(":client").tasks.getByName("browserProductionWebpack"))
+    from(project(":client").tasks.named("browserDistribution"))
 }
 
 
