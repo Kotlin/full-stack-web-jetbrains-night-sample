@@ -7,7 +7,7 @@ val kotlinxCoroutinesVersion = project.property("kotlinx.coroutines.version") as
 val kotlinWrappersSuffix = project.property("kotlin.wrappers.suffix") as String
 
 kotlin {
-    target {
+    js {
         useCommonJs()
         browser()
         binaries.executable()
