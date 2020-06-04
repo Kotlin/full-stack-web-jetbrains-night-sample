@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm'
-    id 'kotlinx-serialization'
+    id 'org.jetbrains.kotlin.plugin.serialization'
     id 'application'
     id 'distribution'
 }

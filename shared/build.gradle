@@ -1,6 +1,6 @@
 plugins {
     id 'org.jetbrains.kotlin.multiplatform'
-    id 'kotlinx-serialization'
+    id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 def kotlin_version = 'pre.107-kotlin-1.4-M2' // for kotlin-wrappers
