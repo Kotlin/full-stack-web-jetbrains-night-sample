@@ -2,6 +2,7 @@ package view
 
 import contrib.ringui.ringCode
 import contrib.ringui.ringErrorMessage
+import contrib.ringui.ringLink
 import kotlinext.js.require
 import kotlinx.css.marginTop
 import kotlinx.css.px
@@ -48,17 +49,27 @@ class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
                             code = "Demo error"
                             message = "unexpected."
                             description =
-                                "This problem is likely related with demo.\nSubmit issue on https://github.com/Kotlin/kotlin-full-stack-application-demo"
+                                "This problem is likely related with demo."
+
+                            ringLink {
+                                attrs {
+                                    href = "https://github.com/Kotlin/kotlin-full-stack-application-demo"
+                                }
+                                +"Submit issue"
+                            }
                         }
                     }
                     error.message?.let {
                         val jsonElement = Json.parseJson(it)
                         val messageKey = "message"
-                        if (jsonElement.contains(messageKey)) {
-                            ringCode {
-                                attrs {
-                                    code = jsonElement.jsonObject.getPrimitive(messageKey).content
-                                }
+                        val code = if (jsonElement.contains(messageKey)) {
+                            jsonElement.jsonObject.getPrimitive(messageKey).content
+                        } else {
+                            it
+                        }
+                        ringCode {
+                            attrs {
+                                this.code = code
                             }
                         }
                     }
