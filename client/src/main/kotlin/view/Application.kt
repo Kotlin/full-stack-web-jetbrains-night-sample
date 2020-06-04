@@ -21,8 +21,6 @@ import styled.styledA
 import styled.styledDiv
 import kotlin.random.Random
 
-val jetbrainsLogo = kotlinext.js.require("@jetbrains/logos/jetbrains/jetbrains-simple.svg")
-
 private object ApplicationStyles : StyleSheet("ApplicationStyles", isStatic = true) {
     val wrapper by css {
         padding(32.px, 16.px)

@@ -8,7 +8,7 @@
             loader: "svg-inline-loader",
             options: {removeSVGTagAttrs: false},
             include: [
-                path.resolve(require.resolve("@jetbrains/logos"), "..", "..")
+                path.resolve(require("@jetbrains/logos"))
             ]
         }
     );

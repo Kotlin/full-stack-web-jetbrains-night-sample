@@ -44,6 +44,7 @@ dependencies {
     implementation(npm("react-is", "16.13.0"))
     implementation(npm("inline-style-prefixer", "5.1.0"))
     implementation(npm("styled-components", "4.3.2"))
+    implementation(npm("react-svg-loader", "3.0.3"))
     implementation(npm("@jetbrains/logos", "1.1.6"))
     implementation(npm("@jetbrains/ring-ui", "3.0.4"))
 

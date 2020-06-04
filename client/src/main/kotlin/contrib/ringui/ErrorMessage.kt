@@ -6,7 +6,7 @@ import react.RProps
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/error-message/error-message.js
 external interface ErrorMessageProps : RProps {
-    var icon: String
+    var icon: dynamic
     var code: String
     var message: String
     var description: String

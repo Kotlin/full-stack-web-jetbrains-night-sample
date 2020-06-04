@@ -11,9 +11,10 @@ import styled.css
 import styled.styledA
 import view.ApplicationComponent
 import view.ErrorBoundaryComponent
-import view.jetbrainsLogo
 import kotlin.browser.document
 import kotlin.coroutines.CoroutineContext
+
+val jetbrainsLogo = kotlinext.js.require("@jetbrains/logos/jetbrains/jetbrains-simple.svg")
 
 private class Application : CoroutineScope {
     override val coroutineContext: CoroutineContext = Job()
