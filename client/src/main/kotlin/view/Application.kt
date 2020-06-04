@@ -109,22 +109,6 @@ class ApplicationComponent : RComponent<ApplicationProps, ApplicationState>() {
             throw error
         }
 
-        ringHeader {
-            styledA("/") {
-                css {
-                    specific {
-                        paddingLeft = 48.px
-                    }
-                }
-                ringLogo {
-                    attrs {
-                        className = "logo"
-                        glyph = jetbrainsLogo
-                    }
-                }
-            }
-        }
-
         styledDiv {
             css {
                 +ApplicationStyles.wrapper
