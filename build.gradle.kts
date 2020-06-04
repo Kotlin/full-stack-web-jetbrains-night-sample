@@ -1,8 +1,15 @@
 plugins {
-    id("org.jetbrains.kotlin.multiplatform") version "1.3.72" apply false
-    id("kotlinx-serialization") version "1.3.72" apply false
+    kotlin("multiplatform") version "1.4-M2" apply false
+    kotlin("plugin.serialization") version "1.4-M2" apply false
 }
 
 allprojects {
     version = "0.1.1"
+
+    repositories {
+        jcenter()
+        maven("https://dl.bintray.com/kotlin/kotlinx")
+        maven("https://dl.bintray.com/kotlin/kotlin-eap")
+        maven("https://dl.bintray.com/kotlin/kotlin-dev")
+    }
 }

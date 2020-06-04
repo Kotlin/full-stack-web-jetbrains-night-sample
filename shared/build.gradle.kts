@@ -1,25 +1,16 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
-    id("kotlinx-serialization")
+    kotlin("multiplatform")
+    kotlin("plugin.serialization")
 }
 
-repositories {
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-dev")
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
-    jcenter()
-    maven(url = "https://dl.bintray.com/kotlin/ktor")
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-js-wrappers")
-    maven(url = "https://dl.bintray.com/kotlin/kotlinx")
-    maven(url = "https://dl.bintray.com/kotlin/exposed")
-    mavenCentral()
-}
+val kotlinxSerializationVersion = project.property("kotlinx.serialization.version") as String
+val kotlinxCoroutinesVersion = project.property("kotlinx.coroutines.version") as String
+val ktorVersion = project.property("ktor.version") as String
+val kotlinWrappersSuffix = project.property("kotlin.wrappers.suffix") as String
 
-val kotlinVersion = "pre.94-kotlin-1.3.70" // for kotlin-wrappers
-val ktorVersion = "1.3.2"
-val kotlinxSerializationVersion = "0.20.0"
-val logbackVersion = "1.2.3"
+val logbackVersion = project.property("logback.version") as String
+val exposedVersion = project.property("exposed.version") as String
+val h2Version = project.property("h2.version") as String
 
 kotlin {
     jvm()
@@ -28,7 +19,7 @@ kotlin {
             testTask {
                 testLogging {
                     showExceptions = true
-                    exceptionFormat = FULL
+                    exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
                     showCauses = true
                     showStackTraces = true
                 }
@@ -38,7 +29,7 @@ kotlin {
             testTask {
                 testLogging {
                     showExceptions = true
-                    exceptionFormat = FULL
+                    exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
                     showCauses = true
                     showStackTraces = true
                 }
@@ -47,14 +38,13 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
+        val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation("org.jetbrains:kotlin-css:1.0.0-$kotlinVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$kotlinxSerializationVersion")
+                implementation("org.jetbrains:kotlin-css:1.0.0-$kotlinWrappersSuffix")
             }
         }
-        commonTest {
+        val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
@@ -68,12 +58,12 @@ kotlin {
                 implementation("io.ktor:ktor-jackson:$ktorVersion")
                 implementation("io.ktor:ktor-html-builder:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:$logbackVersion")
-                implementation("org.jetbrains:kotlin-css-jvm:1.0.0-$kotlinVersion")
+                implementation("org.jetbrains:kotlin-css:1.0.0-$kotlinWrappersSuffix")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinxSerializationVersion")
-                implementation("org.jetbrains.exposed:exposed-core:0.22.1")
-                implementation("org.jetbrains.exposed:exposed-dao:0.22.1")
-                implementation("org.jetbrains.exposed:exposed-jdbc:0.22.1")
-                implementation("com.h2database:h2:1.4.200")
+                implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+                implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
+                implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+                implementation("com.h2database:h2:$h2Version")
             }
         }
         val jvmTest by getting {
@@ -86,7 +76,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-js"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$kotlinxSerializationVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.3.3")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$kotlinxCoroutinesVersion")
             }
         }
         val jsTest by getting {
