@@ -58,6 +58,8 @@ fun <T> parse(serializationStrategy: DeserializationStrategy<T>, string: String)
     return try {
         Json.parse(serializationStrategy, string)
     } catch (e: Throwable) {
-        throw IllegalStateException(string)
+        throw TransportException(string)
     }
 }
+
+class TransportException(message: String): Exception(message)

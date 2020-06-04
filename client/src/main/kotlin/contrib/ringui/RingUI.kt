@@ -7,7 +7,9 @@ import react.RClass
 external object RingUI {
     val Alert: RClass<AlertProps>
     val Button: RClass<ButtonProps>
+    val Code: RClass<CodeProps>
     val Dialog: RClass<DialogProps>
+    val ErrorMessage: RClass<ErrorMessageProps>
     val Header: RClass<HeaderProps>
     val Link: RClass<LinkProps>
     val Icon: RClass<IconProps>
