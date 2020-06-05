@@ -49,7 +49,7 @@ tasks.withType<Copy>().named("processResources") {
 
 tasks.register<Copy>("devServerResources") {
     destinationDir = File(project.buildDir, "dev-resources")
-    from(sourceSets.main.map { resources })
+    from(sourceSets.main.map { it.resources })
     filter { line -> line.replace("port = 8080", "port = 8081") }
 }
 
