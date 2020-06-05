@@ -44,9 +44,9 @@ class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
                             code = "Remote server error"
                             message = "no answer."
                             description =
-                                "It is temporary problem which is not related with demo. Try again later."
+                                "It is likely temporary problem which is not related with demo. Try again later."
                         } else {
-                            code = "Demo error"
+                            code = "Internal error"
                             message = "unexpected."
                             description =
                                 "This problem is likely related with demo."
