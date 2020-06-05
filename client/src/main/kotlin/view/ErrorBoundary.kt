@@ -60,16 +60,9 @@ class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
                         }
                     }
                     error.message?.let {
-                        val jsonElement = Json.parseJson(it)
-                        val messageKey = "message"
-                        val code = if (jsonElement.contains(messageKey)) {
-                            jsonElement.jsonObject.getPrimitive(messageKey).content
-                        } else {
-                            it
-                        }
                         ringCode {
                             attrs {
-                                this.code = code
+                                this.code = it
                             }
                         }
                     }

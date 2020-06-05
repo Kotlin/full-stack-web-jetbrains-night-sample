@@ -6,8 +6,6 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.list
-import org.w3c.fetch.RequestCredentials
 import org.w3c.fetch.RequestInit
 import kotlin.browser.window
 import kotlin.coroutines.CoroutineContext
@@ -44,10 +42,14 @@ class Transport(private val coroutineContext: CoroutineContext) {
         }
 
         return withContext(coroutineContext) {
-            val response = window.fetch(url, RequestInit("GET", headers = json(
-                "Accept" to "application/json",
-                "Content-Type" to "application/json"
-            ), credentials = "same-origin".asDynamic())).await()
+            val response = window.fetch(
+                url, RequestInit(
+                    "GET", headers = json(
+                        "Accept" to "application/json",
+                        "Content-Type" to "application/json"
+                    ), credentials = "same-origin".asDynamic()
+                )
+            ).await()
 
             response.text().await()
         }
@@ -58,8 +60,15 @@ fun <T> parse(serializationStrategy: DeserializationStrategy<T>, string: String)
     return try {
         Json.parse(serializationStrategy, string)
     } catch (e: Throwable) {
-        throw TransportException(string)
+        val jsonElement = Json.parseJson(string)
+        val messageKey = "message"
+        val message = if (jsonElement.contains(messageKey)) {
+            jsonElement.jsonObject.getPrimitive(messageKey).content
+        } else {
+            string
+        }
+        throw TransportException(message)
     }
 }
 
-class TransportException(message: String): Exception(message)
+class TransportException(message: String) : Exception(message)
