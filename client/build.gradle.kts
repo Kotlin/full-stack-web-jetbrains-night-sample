@@ -9,7 +9,17 @@ val kotlinWrappersSuffix = project.property("kotlin.wrappers.suffix") as String
 kotlin {
     js {
         useCommonJs()
-        browser()
+        browser {
+
+            // Bug? CSS should be declared in the end to not overwrite users settings
+            webpackTask {
+                cssSettings.enabled = false
+            }
+
+            runTask {
+                cssSettings.enabled = false
+            }
+        }
         binaries.executable()
     }
 }

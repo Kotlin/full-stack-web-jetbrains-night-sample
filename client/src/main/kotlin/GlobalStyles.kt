@@ -1,6 +1,6 @@
 import kotlinext.js.invoke
 import kotlinx.css.*
-import styled.StyledComponents
+import styled.createGlobalStyle
 
 object GlobalStyles {
     fun inject() {
@@ -11,6 +11,6 @@ object GlobalStyles {
             }
         }
 
-        StyledComponents.createGlobalStyle(styles.toString())
+        createGlobalStyle(styles.toString())
     }
 }
