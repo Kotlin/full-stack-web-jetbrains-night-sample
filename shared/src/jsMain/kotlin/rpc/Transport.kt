@@ -60,14 +60,7 @@ fun <T> parse(serializationStrategy: DeserializationStrategy<T>, string: String)
     return try {
         Json.parse(serializationStrategy, string)
     } catch (e: Throwable) {
-        val jsonElement = Json.parseJson(string)
-        val messageKey = "message"
-        val message = if (jsonElement.contains(messageKey)) {
-            jsonElement.jsonObject.getPrimitive(messageKey).content
-        } else {
-            string
-        }
-        throw TransportException(message)
+        throw TransportException(e.message ?: "")
     }
 }
 
