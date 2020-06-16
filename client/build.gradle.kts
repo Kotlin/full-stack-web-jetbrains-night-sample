@@ -2,6 +2,7 @@ plugins {
     kotlin("js")
 }
 
+val kotlinxHtmlVersion = project.property("kotlinx.html.version") as String
 val kotlinxSerializationVersion = project.property("kotlinx.serialization.version") as String
 val kotlinxCoroutinesVersion = project.property("kotlinx.coroutines.version") as String
 val kotlinWrappersSuffix = project.property("kotlin.wrappers.suffix") as String
@@ -34,7 +35,7 @@ dependencies {
 
     implementation(npm("core-js", "2.6.5"))
     implementation(npm("svg-inline-loader", "0.8.0"))
-    implementation("org.jetbrains.kotlinx:kotlinx-html:0.7.1-1.4-M2")
+    implementation("org.jetbrains.kotlinx:kotlinx-html:$kotlinxHtmlVersion")
     implementation("org.jetbrains:kotlin-react:16.13.1-$kotlinWrappersSuffix")
     implementation(npm("react", "16.13.1"))
     implementation(npm("react-dom", "16.13.1"))
