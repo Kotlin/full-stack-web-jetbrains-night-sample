@@ -11,15 +11,6 @@ kotlin {
     js {
         useCommonJs()
         browser {
-
-            // Bug? CSS should be declared in the end to not overwrite users settings
-            webpackTask {
-                cssSettings.enabled = false
-            }
-
-            runTask {
-                cssSettings.enabled = false
-            }
         }
         binaries.executable()
     }

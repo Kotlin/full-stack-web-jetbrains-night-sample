@@ -12,12 +12,10 @@ import rpc.TransportException
 import styled.css
 import styled.styledDiv
 
-@JsExport
 class ErrorBoundaryState : RState {
     var error: Throwable? = null
 }
 
-@JsExport
 class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
     init {
         state = ErrorBoundaryState()

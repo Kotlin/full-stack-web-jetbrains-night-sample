@@ -50,7 +50,6 @@ fun PostState() = object : PostState {
     override var loading: Boolean = false
 }
 
-@JsExport
 class PostView : RComponent<PostProps, PostState>() {
     private val post
         get() = props.postWithComments.post
