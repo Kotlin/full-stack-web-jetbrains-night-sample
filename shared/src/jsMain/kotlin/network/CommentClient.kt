@@ -31,7 +31,7 @@ actual class CommentClient actual constructor(coroutineContext: CoroutineContext
                         "POST",
                         headers = headers,
                         credentials = RequestCredentials.SAME_ORIGIN,
-                        body = Json.stringify(FakeJsonCommentRequest.serializer(), fakeJsonRequestBody)
+                        body = Json.encodeToString(FakeJsonCommentRequest.serializer(), fakeJsonRequestBody)
                     )
                 ).await()
             } else {
@@ -41,19 +41,20 @@ actual class CommentClient actual constructor(coroutineContext: CoroutineContext
             if (fakeJsonResponse?.status == 200.toShort()) {
                 if (count <= 1) {
                     "[${fakeJsonResponse.text().await()}]"
-                }
-                else {
+                } else {
                     fakeJsonResponse.text().await()
                 }
             } else {
                 fallback = true
 
                 val url = "$JSON_PLACEHOLDER_URL/posts/$postId/comments"
-                val response = window.fetch(url, RequestInit(
-                    "GET",
-                    headers = headers,
-                    credentials = RequestCredentials.SAME_ORIGIN
-                )).await()
+                val response = window.fetch(
+                    url, RequestInit(
+                        "GET",
+                        headers = headers,
+                        credentials = RequestCredentials.SAME_ORIGIN
+                    )
+                ).await()
 
                 response.text().await()
             }
