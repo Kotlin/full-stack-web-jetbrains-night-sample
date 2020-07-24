@@ -4,8 +4,10 @@ import kotlinx.coroutines.await
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.parse
 import org.w3c.fetch.RequestInit
 import kotlin.browser.window
 import kotlin.coroutines.CoroutineContext
@@ -31,7 +33,7 @@ class Transport(private val coroutineContext: CoroutineContext) {
         deserializationStrategy: KSerializer<T>,
         vararg args: Pair<String, Any>
     ): List<T> {
-        return parse(deserializationStrategy.list, fetch(url, *args))
+        return parse(ListSerializer(deserializationStrategy), fetch(url, *args))
     }
 
     private suspend fun fetch(method: String, vararg args: Pair<String, Any>): String {
@@ -58,7 +60,7 @@ class Transport(private val coroutineContext: CoroutineContext) {
 
 fun <T> parse(serializationStrategy: DeserializationStrategy<T>, string: String): T {
     return try {
-        Json.parse(serializationStrategy, string)
+        Json.decodeFromString(serializationStrategy, string)
     } catch (e: Throwable) {
         throw TransportException(e.message ?: "")
     }

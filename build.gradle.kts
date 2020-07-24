@@ -1,6 +1,6 @@
 plugins {
-    kotlin("multiplatform") version "1.4-M3" apply false
-    kotlin("plugin.serialization") version "1.4-M3" apply false
+    kotlin("multiplatform") version "1.4.0-rc" apply false
+    kotlin("plugin.serialization") version "1.4.0-rc" apply false
 }
 
 allprojects {

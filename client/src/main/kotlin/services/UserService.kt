@@ -3,6 +3,7 @@ package services
 import JSON_PLACEHOLDER_URL
 import kotlinx.coroutines.await
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
@@ -16,7 +17,7 @@ import kotlin.js.json
 class UserService(private val coroutineContext: CoroutineContext) {
     suspend fun getUsers(): List<User> {
         val response = fetch("$JSON_PLACEHOLDER_URL/users")
-        return parse(User.serializer().list, response)
+        return parse(ListSerializer(User.serializer()), response)
     }
 
     suspend fun getUser(id: Int): User {

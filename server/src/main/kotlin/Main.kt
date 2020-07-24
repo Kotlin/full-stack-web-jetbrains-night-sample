@@ -16,9 +16,11 @@ import kotlinx.coroutines.launch
 import kotlinx.css.*
 import kotlinx.css.properties.lh
 import kotlinx.html.*
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
+import kotlinx.serialization.parse
 import model.Post
 import model.PostWithComments
 import network.PostClient
@@ -51,7 +53,7 @@ fun Application.main() {
 
     launch {
         val result = PostClient(this.coroutineContext).getPosts()
-        val posts = Json.parse(Post.serializer().list, result)
+        val posts = Json.decodeFromString(ListSerializer(Post.serializer()), result)
 
         database {
             Posts.batchInsert(posts) {
