@@ -19,7 +19,7 @@ kotlin {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-js")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$kotlinxSerializationVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-js:$kotlinxSerializationVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$kotlinxCoroutinesVersion")
 
     implementation(project(":shared"))
