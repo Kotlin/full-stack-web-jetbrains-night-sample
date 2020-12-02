@@ -4,14 +4,15 @@
     const shouldRunServer = config.mode !== "production"
     const serverTaskName = ":server:devServer"
     const serverUrl = 'http://localhost:8081'
+    const path = require('path')
 
     if (shouldRunServer) {
         console.log("Running " + serverTaskName + " in background...")
         // __dirname = $ROOT/build/js/packages/$PACKAGE_NAME
         // rootProject = $ROOT
-        const rootProject = require('path').resolve(__dirname, '../../../../')
+        const rootProject = path.resolve(__dirname, '../../../../')
         const child = require('child_process').exec(
-            "./gradlew " + serverTaskName,
+            "." + path.sep + "gradlew " + serverTaskName,
             {
                 "cwd": rootProject
             },
