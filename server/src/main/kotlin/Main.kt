@@ -17,10 +17,7 @@ import kotlinx.css.*
 import kotlinx.css.properties.lh
 import kotlinx.html.*
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.list
-import kotlinx.serialization.parse
 import model.Post
 import model.PostWithComments
 import network.PostClient

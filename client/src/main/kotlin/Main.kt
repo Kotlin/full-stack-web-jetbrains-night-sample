@@ -11,7 +11,7 @@ import styled.css
 import styled.styledA
 import view.ApplicationComponent
 import view.ErrorBoundaryComponent
-import kotlin.browser.document
+import kotlinx.browser.document
 import kotlin.coroutines.CoroutineContext
 
 val jetbrainsLogo = kotlinext.js.require("@jetbrains/logos/jetbrains/jetbrains-simple.svg")

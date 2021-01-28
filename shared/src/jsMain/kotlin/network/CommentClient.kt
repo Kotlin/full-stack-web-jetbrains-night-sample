@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 import org.w3c.fetch.RequestCredentials
 import org.w3c.fetch.RequestInit
 import org.w3c.fetch.SAME_ORIGIN
-import kotlin.browser.window
+import kotlinx.browser.window
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 import kotlin.js.json
