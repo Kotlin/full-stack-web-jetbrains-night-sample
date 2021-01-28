@@ -7,11 +7,16 @@
 
     if (shouldRunServer) {
         console.log("Running " + serverTaskName + " in background...")
+        const platform = require('os').platform()
         // __dirname = $ROOT/build/js/packages/$PACKAGE_NAME
         // rootProject = $ROOT
         const rootProject = require('path').resolve(__dirname, '../../../../')
+        let prefix = ''
+        if (platform !== 'win32') {
+            prefix = './'
+        }
         const child = require('child_process').exec(
-            "./gradlew " + serverTaskName,
+            `${prefix}gradlew ` + serverTaskName,
             {
                 "cwd": rootProject
             },
