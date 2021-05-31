@@ -13,7 +13,7 @@ external interface ErrorMessageProps : RProps {
 }
 
 fun RBuilder.ringErrorMessage(handler: RHandler<ErrorMessageProps>) {
-    RingUI.ErrorMessage {
+    ErrorMessageModule.default {
         handler()
     }
 }

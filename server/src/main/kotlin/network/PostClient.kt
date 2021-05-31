@@ -6,6 +6,7 @@ import JSON_PLACEHOLDER_URL
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.apache.Apache
+import io.ktor.client.features.*
 import io.ktor.client.request.get
 import io.ktor.client.request.request
 import io.ktor.client.statement.HttpStatement
@@ -42,13 +43,17 @@ class PostClient(private val coroutineContext: CoroutineContext) {
     suspend fun getPosts(): String {
         return withContext(coroutineContext) {
             val fakeJsonResponse = if (!fallback) {
-                client.request<HttpStatement>(FAKE_JSON_URL) {
-                    method = HttpMethod.Post
-                    body = TextContent(
-                        json.writeValueAsString(FakeJsonPostRequest()),
-                        contentType = ContentType.Application.Json
-                    )
-                }.execute()
+               try {
+                   client.request<HttpStatement>(FAKE_JSON_URL) {
+                       method = HttpMethod.Post
+                       body = TextContent(
+                           json.writeValueAsString(FakeJsonPostRequest()),
+                           contentType = ContentType.Application.Json
+                       )
+                   }.execute()
+               } catch (e: ClientRequestException) {
+                   null
+               }
             } else {
                 null
             }

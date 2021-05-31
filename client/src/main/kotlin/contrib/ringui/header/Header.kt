@@ -1,6 +1,5 @@
 package contrib.ringui.header
 
-import contrib.ringui.RingUI
 import react.RBuilder
 import react.RClass
 import react.RHandler
@@ -25,7 +24,7 @@ external interface HeaderProps : WithClassName {
 }
 
 fun RBuilder.ringHeader(handler: RHandler<HeaderProps>) {
-    RingUI.Header {
+    contrib.ringui.HeaderModule.default {
         handler()
     }
 }

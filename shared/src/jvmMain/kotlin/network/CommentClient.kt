@@ -5,6 +5,7 @@ import JSON_PLACEHOLDER_URL
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.apache.Apache
+import io.ktor.client.features.*
 import io.ktor.client.request.get
 import io.ktor.client.request.request
 import io.ktor.client.statement.HttpStatement
@@ -27,13 +28,17 @@ actual class CommentClient actual constructor(coroutineContext: CoroutineContext
         return withContext(coroutineContext) {
             val fakeJsonRequestBody = FakeJsonCommentRequest.create(postId.toInt(), count)
             val fakeJsonResponse = if (!fallback) {
-                client.request<HttpStatement>(FAKE_JSON_URL) {
-                    method = HttpMethod.Post
-                    body = TextContent(
-                        json.writeValueAsString(fakeJsonRequestBody),
-                        contentType = ContentType.Application.Json
-                    )
-                }.execute()
+                try {
+                    client.request<HttpStatement>(FAKE_JSON_URL) {
+                        method = HttpMethod.Post
+                        body = TextContent(
+                            json.writeValueAsString(fakeJsonRequestBody),
+                            contentType = ContentType.Application.Json
+                        )
+                    }.execute()
+                } catch (e: ClientRequestException) {
+                    null
+                }
             } else {
                 null
             }

@@ -15,7 +15,7 @@ external interface IconProps : WithClassName {
 }
 
 fun RBuilder.ringIcon(handler: RHandler<IconProps>) {
-    RingUI.Icon {
+    IconModule.default {
         handler()
     }
 }

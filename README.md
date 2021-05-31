@@ -29,7 +29,7 @@ It uses:
 - [Ktor framework](https://ktor.io) as a web server;
 - [H2](https://www.h2database.com/html/main.html) in-memory database with [Exposed](https://github.com/JetBrains/Exposed) to preload posts at application startup;
 - [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) for client/server (de-)serialization and RPC;
-- [React](https://reactjs.org), [Styled components](https://www.styled-components.com), [Ring UI 2.0](https://jetbrains.github.io/ring-ui/develop-2.0/index.html) and [kotlin-wrappers](https://github.com/JetBrains/kotlin-wrappers) for rendering. 
+- [React](https://reactjs.org), [Styled components](https://www.styled-components.com), [Ring UI 2.0](https://jetbrains.github.io/ring-ui/master/index.html) and [kotlin-wrappers](https://github.com/JetBrains/kotlin-wrappers) for rendering. 
 
 During application startup posts are preloaded to the in-memory database from the fakeJSON (or JSON Placeholder) service. 
 When the user requests the page, several posts are selected from the DB and the corresponding comments are fetched via the multi-platform HTTP client.

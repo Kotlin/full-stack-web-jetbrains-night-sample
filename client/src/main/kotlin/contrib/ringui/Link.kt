@@ -18,7 +18,7 @@ external interface LinkProps : WithClassName {
 }
 
 fun RBuilder.ringLink(handler: RHandler<LinkProps>) {
-    RingUI.Link {
+    LinkModule.default {
         handler()
     }
 }

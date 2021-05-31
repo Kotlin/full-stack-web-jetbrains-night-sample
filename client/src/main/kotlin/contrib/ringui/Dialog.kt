@@ -21,7 +21,7 @@ external interface DialogProps : WithClassName {
 }
 
 fun RBuilder.ringDialog(show: Boolean, handler: RHandler<DialogProps>) {
-    RingUI.Dialog {
+    DialogModule.default {
         attrs.show = show
         handler()
     }

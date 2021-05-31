@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 import org.w3c.fetch.RequestCredentials
 import org.w3c.fetch.RequestInit
 import org.w3c.fetch.SAME_ORIGIN
-import kotlin.browser.window
+import kotlinx.browser.window
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 import kotlin.js.json
@@ -25,15 +25,19 @@ actual class CommentClient actual constructor(coroutineContext: CoroutineContext
         return withContext(coroutineContext) {
             val fakeJsonRequestBody = FakeJsonCommentRequest.create(postId.toInt(), count)
             val fakeJsonResponse = if (!fallback) {
-                window.fetch(
-                    FAKE_JSON_URL,
-                    RequestInit(
-                        "POST",
-                        headers = headers,
-                        credentials = RequestCredentials.SAME_ORIGIN,
-                        body = Json.encodeToString(FakeJsonCommentRequest.serializer(), fakeJsonRequestBody)
-                    )
-                ).await()
+                try {
+                    window.fetch(
+                        FAKE_JSON_URL,
+                        RequestInit(
+                            "POST",
+                            headers = headers,
+                            credentials = RequestCredentials.SAME_ORIGIN,
+                            body = Json { encodeDefaults = true }.encodeToString(FakeJsonCommentRequest.serializer(), fakeJsonRequestBody)
+                        )
+                    ).await()
+                } catch (e: Exception) {
+                    null
+                }
             } else {
                 null
             }

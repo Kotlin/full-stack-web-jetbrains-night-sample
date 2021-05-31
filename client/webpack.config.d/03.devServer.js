@@ -26,7 +26,7 @@
         let isBackendRun = false
 
         config.devServer = config.devServer || {}
-        config.devServer.before = function (app, server, compiler) {
+        config.devServer.onBeforeSetupMiddleware = function (server) {
             if (isBackendRun) return
 
             isBackendRun = true
