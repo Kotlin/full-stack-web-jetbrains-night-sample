@@ -25,15 +25,19 @@ actual class CommentClient actual constructor(coroutineContext: CoroutineContext
         return withContext(coroutineContext) {
             val fakeJsonRequestBody = FakeJsonCommentRequest.create(postId.toInt(), count)
             val fakeJsonResponse = if (!fallback) {
-                window.fetch(
-                    FAKE_JSON_URL,
-                    RequestInit(
-                        "POST",
-                        headers = headers,
-                        credentials = RequestCredentials.SAME_ORIGIN,
-                        body = Json.encodeToString(FakeJsonCommentRequest.serializer(), fakeJsonRequestBody)
-                    )
-                ).await()
+                try {
+                    window.fetch(
+                        FAKE_JSON_URL,
+                        RequestInit(
+                            "POST",
+                            headers = headers,
+                            credentials = RequestCredentials.SAME_ORIGIN,
+                            body = Json { encodeDefaults = true }.encodeToString(FakeJsonCommentRequest.serializer(), fakeJsonRequestBody)
+                        )
+                    ).await()
+                } catch (e: Exception) {
+                    null
+                }
             } else {
                 null
             }

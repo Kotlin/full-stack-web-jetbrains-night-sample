@@ -28,7 +28,7 @@ object AlertTypes {
 }
 
 fun RBuilder.ringAlert(handler: RHandler<AlertProps>) {
-    RingUI.Alert {
+    AlertModule.default {
         handler()
     }
 }

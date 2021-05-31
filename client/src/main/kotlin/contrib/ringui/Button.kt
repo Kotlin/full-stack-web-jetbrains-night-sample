@@ -29,7 +29,7 @@ external interface ButtonProps : WithClassName {
 }
 
 fun RBuilder.ringButton(handler: RHandler<ButtonProps>) {
-    RingUI.Button {
+    ButtonModule.default {
         handler()
     }
 }

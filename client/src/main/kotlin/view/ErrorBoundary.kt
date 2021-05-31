@@ -39,7 +39,7 @@ class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
 
                 ringErrorMessage {
                     attrs {
-                        icon = require("@jetbrains/icons/frown.svg")
+                        icon = require("@jetbrains/icons/frown.js")
                         if (error is TransportException) {
                             code = "Remote server error"
                             message = "no answer."

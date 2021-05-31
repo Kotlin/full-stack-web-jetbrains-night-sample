@@ -10,7 +10,7 @@ external interface CodeProps : RProps {
 }
 
 fun RBuilder.ringCode(handler: RHandler<CodeProps>) {
-    RingUI.Code {
+    CodeModule.default {
         handler()
     }
 }
