@@ -45,3 +45,12 @@ dependencies {
 tasks.named("run") {
     dependsOn(":server:prepareDevServer")
 }
+
+val browserDist by configurations.creating {
+    isCanBeConsumed = true
+    isCanBeResolved = false
+}
+
+artifacts {
+    add(browserDist.name, tasks.named("browserDistribution").map { it.outputs.files.files.single() })
+}

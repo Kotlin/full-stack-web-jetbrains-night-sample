@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
-
 plugins {
     id("java")
     kotlin("jvm")
@@ -15,6 +13,11 @@ val kotlinWrappersSuffix = project.property("kotlin.wrappers.suffix") as String
 val logbackVersion = project.property("logback.version") as String
 val exposedVersion = project.property("exposed.version") as String
 val h2Version = project.property("h2.version") as String
+
+val browserDist by configurations.creating {
+    isCanBeConsumed = false
+    isCanBeResolved = true
+}
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -34,6 +37,15 @@ dependencies {
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+    browserDist(
+        project(
+            mapOf(
+                "path" to ":client",
+                "configuration" to "browserDist"
+            )
+        )
+    )
 }
 
 application {
@@ -41,7 +53,7 @@ application {
 }
 
 tasks.withType<Copy>().named("processResources") {
-    from(project(":client").tasks.named("browserDistribution"))
+    from(browserDist)
 }
 
 
@@ -62,9 +74,9 @@ tasks.register<JavaExec>("devServer") {
     dependsOn("prepareDevServer")
 
     classpath = project.files(
-            configurations.runtimeClasspath,
-            File(project.buildDir, "classes/kotlin/main"),
-            File(project.buildDir, "dev-resources")
+        configurations.runtimeClasspath,
+        File(project.buildDir, "classes/kotlin/main"),
+        File(project.buildDir, "dev-resources")
     )
     main = "io.ktor.server.netty.EngineMain"
 }
