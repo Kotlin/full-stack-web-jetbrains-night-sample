@@ -23,7 +23,7 @@ class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
         state = ErrorBoundaryState()
     }
 
-    override fun componentDidCatch(error: Throwable, info: RErrorInfo) {
+    override fun componentDidCatch(error: Throwable, info: ErrorInfo) {
         setState {
             this.error = error
         }
