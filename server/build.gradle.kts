@@ -55,30 +55,3 @@ application {
 tasks.withType<Copy>().named("processResources") {
     from(browserDist)
 }
-
-
-////// Dev server
-
-tasks.register<Copy>("devServerResources") {
-    destinationDir = File(project.buildDir, "dev-resources")
-    from(sourceSets.main.map { it.resources })
-    filter { line -> line.replace("port = 8080", "port = 8081") }
-}
-
-tasks.register("prepareDevServer") {
-    dependsOn("compileKotlin")
-    dependsOn("devServerResources")
-}
-
-tasks.register<JavaExec>("devServer") {
-    dependsOn("prepareDevServer")
-
-    classpath = project.files(
-        configurations.runtimeClasspath,
-        File(project.buildDir, "classes/kotlin/main"),
-        File(project.buildDir, "dev-resources")
-    )
-    main = "io.ktor.server.netty.EngineMain"
-}
-
-///////////////

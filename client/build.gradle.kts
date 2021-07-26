@@ -42,10 +42,6 @@ dependencies {
     testImplementation(npm("enzyme-adapter-react-16", "1.12.1"))
 }
 
-tasks.named("run") {
-    dependsOn(":server:prepareDevServer")
-}
-
 val browserDist by configurations.creating {
     isCanBeConsumed = true
     isCanBeResolved = false
