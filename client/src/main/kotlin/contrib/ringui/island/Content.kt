@@ -2,11 +2,11 @@ package contrib.ringui.island
 
 import react.RElementBuilder
 import react.RHandler
-import react.dom.WithClassName
+import react.PropsWithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/island/content.js
-external interface IslandContentProps : WithClassName {
-    var scrollableWrapperClassName: String
+external interface IslandContentProps : PropsWithClassName {
+    var scrollableWrappeComponentClassName: String
     var fade: Boolean
     var bottomBorder: Boolean
     var onScroll: () -> Unit

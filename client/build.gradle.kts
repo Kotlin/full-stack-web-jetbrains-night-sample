@@ -29,7 +29,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-html:$kotlinxHtmlVersion")
     implementation("org.jetbrains.kotlin-wrappers:kotlin-react:17.0.2-$kotlinWrappersSuffix")
     implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom:17.0.2-$kotlinWrappersSuffix")
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-styled:5.3.0-$kotlinWrappersSuffix")
+    implementation("org.jetbrains.kotlin-wrappers:kotlin-styled:5.3.1-$kotlinWrappersSuffix")
     implementation("org.jetbrains.kotlin-wrappers:kotlin-extensions:1.0.1-$kotlinWrappersSuffix")
     implementation("org.jetbrains.kotlin-wrappers:kotlin-css:1.0.0-$kotlinWrappersSuffix")
     implementation(npm("inline-style-prefixer", "6.0.0"))

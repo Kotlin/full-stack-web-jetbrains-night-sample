@@ -2,10 +2,10 @@ package contrib.ringui.island
 
 import react.RElementBuilder
 import react.RHandler
-import react.dom.WithClassName
+import react.PropsWithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/island/header.js
-external interface IslandHeaderProps : WithClassName {
+external interface IslandHeaderProps : PropsWithClassName {
     var border: Boolean
     var wrapWithTitle: Boolean
     var phase: Number

@@ -1,49 +1,49 @@
 package contrib.ringui
 
 import contrib.ringui.header.HeaderProps
-import react.RClass
+import react.ComponentClass
 
 @JsModule("@jetbrains/ring-ui/components/alert/alert.js")
 external object AlertModule {
-    val default: RClass<AlertProps>
+    val default: ComponentClass<AlertProps>
 }
 
 @JsModule("@jetbrains/ring-ui/components/button/button.js")
 external object ButtonModule {
-    val default: RClass<ButtonProps>
+    val default: ComponentClass<ButtonProps>
 }
 
 @JsModule("@jetbrains/ring-ui/components/code/code.js")
 external object CodeModule {
-    val default: RClass<CodeProps>
+    val default: ComponentClass<CodeProps>
 }
 
 @JsModule("@jetbrains/ring-ui/components/dialog/dialog.js")
 external object DialogModule {
-    val default: RClass<DialogProps>
+    val default: ComponentClass<DialogProps>
 }
 
 @JsModule("@jetbrains/ring-ui/components/error-message/error-message.js")
 external object ErrorMessageModule {
-    val default: RClass<ErrorMessageProps>
+    val default: ComponentClass<ErrorMessageProps>
 }
 
 @JsModule("@jetbrains/ring-ui/components/header/header.js")
 external object HeaderModule {
-    val default: RClass<HeaderProps>
+    val default: ComponentClass<HeaderProps>
 }
 
 @JsModule("@jetbrains/ring-ui/components/link/link.js")
 external object LinkModule {
-    val default: RClass<LinkProps>
+    val default: ComponentClass<LinkProps>
 }
 
 @JsModule("@jetbrains/ring-ui/components/icon/icon.js")
 external object IconModule {
-    val default: RClass<IconProps>
+    val default: ComponentClass<IconProps>
 }
 
 @JsModule("@jetbrains/ring-ui/components/user-card/user-card.js")
 external object UserCardModule {
-    val UserCard: RClass<UserCardProps>
+    val UserCard: ComponentClass<UserCardProps>
 }

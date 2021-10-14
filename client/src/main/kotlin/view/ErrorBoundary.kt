@@ -3,6 +3,7 @@ package view
 import contrib.ringui.ringCode
 import contrib.ringui.ringErrorMessage
 import contrib.ringui.ringLink
+import kotlinext.js.jsObject
 import kotlinext.js.require
 import kotlinx.css.marginTop
 import kotlinx.css.px
@@ -12,12 +13,14 @@ import rpc.TransportException
 import styled.css
 import styled.styledDiv
 
-@JsExport
-class ErrorBoundaryState : RState {
-    var error: Throwable? = null
+external interface ErrorBoundaryState : State {
+    var error: Throwable?
 }
 
-@JsExport
+fun ErrorBoundaryState() = jsObject<ErrorBoundaryState> {
+    error = null
+}
+
 class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
     init {
         state = ErrorBoundaryState()

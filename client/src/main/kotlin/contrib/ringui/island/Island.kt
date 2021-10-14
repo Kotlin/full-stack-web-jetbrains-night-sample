@@ -1,20 +1,20 @@
 package contrib.ringui.island
 
 import react.RBuilder
-import react.RClass
+import react.ComponentClass
 import react.RHandler
-import react.dom.WithClassName
+import react.PropsWithClassName
 
 @JsModule("@jetbrains/ring-ui/components/island/island")
 internal external object IslandModule {
-    val default: RClass<IslandProps>
-    val Content: RClass<IslandContentProps>
-    val Header: RClass<IslandHeaderProps>
-    val AdaptiveIsland: RClass<IslandProps>
+    val default: ComponentClass<IslandProps>
+    val Content: ComponentClass<IslandContentProps>
+    val Header: ComponentClass<IslandHeaderProps>
+    val AdaptiveIsland: ComponentClass<IslandProps>
 }
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/island/island.js
-external interface IslandProps : WithClassName {
+external interface IslandProps : PropsWithClassName {
     val narrow: Boolean
     val withoutPaddings: Boolean
 }

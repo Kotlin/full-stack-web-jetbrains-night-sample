@@ -1,17 +1,11 @@
 import database.Posts
 import database.database
-import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.features.ContentNegotiation
-import io.ktor.html.respondHtml
-import io.ktor.http.content.files
-import io.ktor.http.content.resources
-import io.ktor.http.content.static
-import io.ktor.jackson.jackson
-import io.ktor.routing.get
-import io.ktor.routing.route
-import io.ktor.routing.routing
+import io.ktor.application.*
+import io.ktor.features.*
+import io.ktor.html.*
+import io.ktor.http.content.*
+import io.ktor.jackson.*
+import io.ktor.routing.*
 import kotlinx.coroutines.launch
 import kotlinx.css.*
 import kotlinx.css.properties.lh
@@ -27,13 +21,14 @@ import rpc.rpc
 import services.PostService
 import services.PostWithCommentsService
 
-private val globalCss = CSSBuilder().apply {
+private val globalCss = CssBuilder().apply {
     body {
         margin(0.px)
         padding(0.px)
 
         fontSize = 13.px
-        fontFamily = "-system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, Arial, sans-serif"
+        fontFamily =
+            "-system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, Arial, sans-serif"
 
         lineHeight = 20.px.lh
     }

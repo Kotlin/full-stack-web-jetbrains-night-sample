@@ -1,24 +1,24 @@
 package contrib.ringui.header
 
 import react.RBuilder
-import react.RClass
+import react.ComponentClass
 import react.RHandler
-import react.dom.WithClassName
+import react.PropsWithClassName
 
 @JsModule("@jetbrains/ring-ui/components/header/header")
 internal external object HeaderModule {
-    val RerenderableHeader: RClass<HeaderProps>
-    val Logo: RClass<HeaderLogoProps>
-    val Tray: RClass<HeaderTrayProps>
-    val TrayIcon: RClass<WithClassName>
-    val Profile: RClass<WithClassName>
-    val SmartProfile: RClass<WithClassName>
-    val Services: RClass<WithClassName>
-    val SmartServices: RClass<WithClassName>
+    val RerenderableHeader: ComponentClass<HeaderProps>
+    val Logo: ComponentClass<HeaderLogoProps>
+    val Tray: ComponentClass<HeaderTrayProps>
+    val TrayIcon: ComponentClass<PropsWithClassName>
+    val Profile: ComponentClass<PropsWithClassName>
+    val SmartProfile: ComponentClass<PropsWithClassName>
+    val Services: ComponentClass<PropsWithClassName>
+    val SmartServices: ComponentClass<PropsWithClassName>
 }
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/header/header.js
-external interface HeaderProps : WithClassName {
+external interface HeaderProps : PropsWithClassName {
     var spaced: Boolean
     var theme: String
 }

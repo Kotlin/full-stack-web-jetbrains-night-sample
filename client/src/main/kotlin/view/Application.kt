@@ -2,6 +2,7 @@ package view
 
 import contrib.ringui.header.ringHeader
 import contrib.ringui.header.ringLogo
+import kotlinext.js.jsObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -35,11 +36,16 @@ external interface ApplicationProps : RProps {
     var coroutineScope: CoroutineScope
 }
 
-@JsExport
-class ApplicationState : RState {
-    var error: Throwable? = null
-    var postWithComments: List<PostWithComments> = emptyList()
-    var users: List<User> = emptyList()
+external interface ApplicationState : State {
+    var error: Throwable?
+    var postWithComments: List<PostWithComments>
+    var users: List<User>
+}
+
+fun ApplicationState() = jsObject<ApplicationState> {
+    error = null
+    postWithComments = emptyList()
+    users = emptyList()
 }
 
 /*
@@ -55,7 +61,6 @@ fun ApplicationState() = object : ApplicationState {
 }
 */
 
-@JsExport
 class ApplicationComponent : RComponent<ApplicationProps, ApplicationState>() {
     init {
         state = ApplicationState()

@@ -3,10 +3,10 @@ package contrib.ringui.header
 import contrib.ringui.ButtonProps
 import react.RElementBuilder
 import react.RHandler
-import react.dom.WithClassName
+import react.PropsWithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/header/tray.js
-external interface HeaderTrayProps : WithClassName
+external interface HeaderTrayProps : PropsWithClassName
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/header/tray-icon.js
 external interface HeaderTrayIconProps : ButtonProps {
@@ -19,7 +19,7 @@ fun RElementBuilder<HeaderProps>.ringTray(handler: RHandler<HeaderTrayProps>) {
     }
 }
 
-fun RElementBuilder<HeaderTrayProps>.ringTrayIcon(handler: RHandler<WithClassName>) {
+fun RElementBuilder<HeaderTrayProps>.ringTrayIcon(handler: RHandler<PropsWithClassName>) {
     HeaderModule.TrayIcon {
         handler()
     }

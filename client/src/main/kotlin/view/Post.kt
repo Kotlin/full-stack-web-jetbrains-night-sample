@@ -40,7 +40,7 @@ external interface PostProps : RProps {
     var onMoreComments: () -> Unit
 }
 
-external interface PostState : RState {
+external interface PostState : State {
     var noMore: Boolean
     var loading: Boolean
 }
@@ -50,7 +50,6 @@ fun PostState() = object : PostState {
     override var loading: Boolean = false
 }
 
-@JsExport
 class PostView : RComponent<PostProps, PostState>() {
     private val post
         get() = props.postWithComments.post

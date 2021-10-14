@@ -4,7 +4,7 @@ import styled.createGlobalStyle
 
 object GlobalStyles {
     fun inject() {
-        val styles = CSSBuilder(allowClasses = false).apply {
+        val styles = CssBuilder(allowClasses = false).apply {
             body {
                 margin(0.px)
                 padding(0.px)
