@@ -34,7 +34,7 @@ object PostStyles : StyleSheet("PostStyles", isStatic = true) {
     }
 }
 
-external interface PostProps : RProps {
+external interface PostProps : Props {
     var postWithComments: PostWithComments
     var user: User?
     var onMoreComments: () -> Unit

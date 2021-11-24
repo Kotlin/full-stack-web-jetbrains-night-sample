@@ -4,8 +4,8 @@ package contrib.enzyme
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import react.RComponent
-import react.RProps
-import react.RState
+import react.Props
+import react.State
 
 external interface EnzymeAdapter
 external fun configure(options: EnzymeOptions): ReactWrapper
@@ -24,9 +24,9 @@ external interface ReactWrapper {
     fun <T : RComponent<*, *>> instance(): T
     fun last(): ReactWrapper
     fun <T> map(fn: (ReactWrapper) -> T): Array<T>
-    fun <P : RProps> props(): P
+    fun <P : Props> props(): P
     fun simulate(event: String)
-    fun <S : RState> state(): S
+    fun <S : State> state(): S
     fun text(): String
     fun update()
 }

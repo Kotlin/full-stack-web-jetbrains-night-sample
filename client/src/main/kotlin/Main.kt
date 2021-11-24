@@ -12,6 +12,7 @@ import styled.styledA
 import view.ApplicationComponent
 import view.ErrorBoundaryComponent
 import kotlinx.browser.document
+import react.createElement
 import kotlin.coroutines.CoroutineContext
 
 val jetbrainsLogo = kotlinext.js.require("@jetbrains/logos/jetbrains/jetbrains-simple.svg")
@@ -21,7 +22,7 @@ private class Application : CoroutineScope {
 
     fun start() {
         document.getElementById("react-app")?.let {
-            render(buildElements {
+            render(createElement {
                 ringHeader {
                     styledA("/") {
                         css {

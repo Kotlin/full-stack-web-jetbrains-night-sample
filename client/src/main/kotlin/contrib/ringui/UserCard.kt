@@ -1,11 +1,11 @@
 package contrib.ringui
 
+import react.Props
 import react.RBuilder
 import react.RHandler
-import react.RProps
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/user-card/card.js
-external interface UserCardProps : RProps {
+external interface UserCardProps : Props {
     var user: UserCardModel
     var wording: UserCardWording
 }

@@ -1,11 +1,11 @@
 package contrib.ringui
 
+import react.Props
 import react.RBuilder
 import react.RHandler
-import react.RProps
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/code/code.js
-external interface CodeProps : RProps {
+external interface CodeProps : Props {
     var code: String
 }
 

@@ -1,11 +1,11 @@
 package contrib.ringui
 
+import react.Props
 import react.RBuilder
 import react.RHandler
-import react.RProps
 
 // https://github.com/JetBrains/ring-ui/blob/master/components/error-message/error-message.js
-external interface ErrorMessageProps : RProps {
+external interface ErrorMessageProps : Props {
     var icon: dynamic
     var code: String
     var message: String

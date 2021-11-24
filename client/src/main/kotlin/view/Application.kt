@@ -32,7 +32,7 @@ private object ApplicationStyles : StyleSheet("ApplicationStyles", isStatic = tr
     }
 }
 
-external interface ApplicationProps : RProps {
+external interface ApplicationProps : Props {
     var coroutineScope: CoroutineScope
 }
 

@@ -21,7 +21,7 @@ fun ErrorBoundaryState() = jsObject<ErrorBoundaryState> {
     error = null
 }
 
-class ErrorBoundaryComponent : RComponent<RProps, ErrorBoundaryState>() {
+class ErrorBoundaryComponent : RComponent<PropsWithChildren, ErrorBoundaryState>() {
     init {
         state = ErrorBoundaryState()
     }

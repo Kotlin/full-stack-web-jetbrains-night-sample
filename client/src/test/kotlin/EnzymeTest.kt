@@ -5,6 +5,7 @@ import react.buildElements
 import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.dom.appendText
+import react.createElement
 import kotlin.test.assertEquals
 
 val ReactDOM = kotlinext.js.require("react-dom")
@@ -52,7 +53,7 @@ open class EnzymeTest {
     }
 
     fun enzymeMount(options: MountOptions, handler: RBuilder.() -> Unit): ReactWrapper = mount(
-        buildElements {
+        createElement {
             handler()
         },
         options
